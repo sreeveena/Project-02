@@ -60,5 +60,11 @@ router.get("/api/session", function(req,res) {
     
 });
 
+router.delete("/api/session", function(req,res) {
+    req.session.destroy(function(err) {
+        res.json({});
+      });
+    
+});
 // Export routes for server.js to use.
 module.exports = router;

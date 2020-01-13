@@ -1,7 +1,7 @@
 
 $(function() {
     $(".app").hide();
-
+    $("#signOut").hide();
     $(".registerbtn").on("click", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();  
@@ -76,7 +76,20 @@ function checkSession(){
               $(".login-form").hide();
               $(".app").show();
               $("#app-content").html("Welcome " + res.id + "!");
+              $("#signOut").show();
+              $(".g-signin2").hide();
           }
+        }
+      );
+}
+//--------------------sign out ----------------------
+function eventSignOut(){
+    signOut();
+    $.ajax("/api/session", {
+        type: "DELETE"
+      }).then(
+        function(res) {
+         location.reload(); 
         }
       );
 }
