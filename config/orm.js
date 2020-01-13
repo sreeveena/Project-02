@@ -3,8 +3,9 @@ var connection = require("../config/connection.js");
 
 // Object for all our SQL statement functions.
 var orm = {
-    selectAll: function(tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
+    selectOne: function(tableInput, condition, cb) {
+        var queryString = "SELECT * FROM " + tableInput + " where "+condition+";";
+        console.log(queryString);
         connection.query(queryString, function(err, result) {
         if (err) {
             throw err;
@@ -13,7 +14,7 @@ var orm = {
         });
     },
   insertOne: function(table, cols, vals, cb) {
-    var queryString = "INSERT INTO " + table + " ("+ cols.toString()+ ") "+ "VALUES ('" + vals + "') ";
+    var queryString = "INSERT INTO " + table + " ("+ cols.toString()+ ") "+ "VALUES (" + vals + ") ";
     console.log(queryString);
     connection.query(queryString, vals, function(err, result) {
       if (err) {
