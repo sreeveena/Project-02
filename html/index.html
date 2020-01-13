@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="796335138193-nltl3su3ttip4hiudrf2uhd818drt1gu.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Register</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery.js"></script>
@@ -13,33 +16,69 @@
 </head>
 <body>
     <script src="/assets/js/auth.js"></script>
-    <form action="/api/register">
-    <div class="container">
-        <h1>Register</h1>
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email"  name="email" id="email" required>
+    
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <a href="#" onclick="signOut();">Sign out</a>
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
+            });
+        }
+    
+        function onSignIn(googleUser) {
+          // Useful data for your client-side scripts:
+          var profile = googleUser.getBasicProfile();
+          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+          console.log('Full Name: ' + profile.getName());
+          console.log('Given Name: ' + profile.getGivenName());
+          console.log('Family Name: ' + profile.getFamilyName());
+          console.log("Image URL: " + profile.getImageUrl());
+          console.log("Email: " + profile.getEmail());
+  
+          // The ID token you need to pass to your backend:
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log("ID Token: " + id_token);
+        }
+    </script>
+    <div class="login-form">
+        <div class="register-form">
+            <form action="/api/register">
+                <div class="container">
+                    <h1>Register</h1>
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email"  name="email" id="email" required>
 
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                    <label for="psw-repeat"><b>Repeat Password</b></label>
+                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
-        <button type="submit" class="registerbtn">Submit</button>
+                    <button type="submit" class="registerbtn">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="signin-form">
+            <form action="/api/auth">
+                <div class="container">
+                <h1>Sign in</h1>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="signEmail" required>
+            
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="signPsw" required>
+            
+                <button type="submit" class="signinbtn">Submit</button>
+                </div> 
+            </form>
+        </div>
     </div>
-    </form>
-    <form action="/api/auth">
-        <div class="container">
-        <h1>Signin</h1>
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" id="signEmail" required>
-    
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="signPsw" required>
-    
-        <button type="submit" class="signinbtn">Submit</button>
-        </div> 
-    </form>
+    <div class="app">
+        <div id="app-content"></div>
+        <div id="sign-out"></div>
+    </div>
 
 </body>
 </html>

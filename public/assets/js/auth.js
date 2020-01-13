@@ -1,5 +1,7 @@
 
 $(function() {
+    $(".app").hide();
+
     $(".registerbtn").on("click", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();  
@@ -25,13 +27,7 @@ $(function() {
         }
       );
     });
-//   function validateBurgerName(name){
-//     if(name == ""|| name == null || name.search(/^[0-9]*$/) != -1 || name.search(/^[ ]*$/)!= -1){
-//       alert("please enter a valid Burger name.");
-//       return false;
-//     }
-//     return true;
-//   }
+
     $(".signinbtn").on("click", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
@@ -48,10 +44,27 @@ $(function() {
           function(res) {
             console.log(res);
             // Reload the page to get the updated list
-            // location.reload();
+            location.reload();
           }
         );
       
     });
+
+    $.ajax("/api/session", {
+        type: "GET"
+      }).then(
+        function(res) {
+          console.log("user id " + res.id);
+          console.log(res);
+          if(res.id) {
+              $(".login-form").hide();
+              $(".app").show();
+              $("#app-content").html("Welcome " + res.id + "!");
+          }
+          // Reload the page to get the updated list
+        //   location.reload();
+        }
+      );
+
    });
   

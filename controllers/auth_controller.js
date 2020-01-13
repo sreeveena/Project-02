@@ -9,7 +9,10 @@ router.post("/api/auth/:email", function(req, res) {
     var condition = "email = '" + req.params.email+"'";
   auth.selectOne(condition,function(data) {
      if( data[0].password == req.body.password){
+        req.session.userid = req.params.email;
+        console.log("Session userid - " + req.session.userid);
         res.json({ result:"success" });
+        
      }else{
         res.json({ result:"fail" });
      }
@@ -25,7 +28,15 @@ router.post("/api/register", function(req, res) {
   });
 });
 
-
+router.get("/api/session", function(req,res) {
+    console.log("Session id - " + req.session.userid);
+    if (req.session.userid) {
+        res.json({ id: req.session.userid });
+    } else {
+        res.json({});
+    }
+    
+});
 
 // Export routes for server.js to use.
 module.exports = router;
