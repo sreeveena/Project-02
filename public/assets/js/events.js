@@ -23,8 +23,8 @@ function getEvents(lat, lon) {
         method: "POST",
         data: {lon: lon, lat:lat, date:startDate}
     }).then(function (response){
-        console.log(response);
-        
+        // console.log(response);
+        $(".events").html(response.results[0].assetName);
         
     });
 }
