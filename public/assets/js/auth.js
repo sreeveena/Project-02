@@ -117,6 +117,6 @@ function onSignIn(googleUser) {
 //registerUser function call with google email parameters.
     registerUser(profile.getEmail(),"", "google");
     authUser(profile.getEmail(),"", "google");
-    checkSession();
-    
+    console.log("profile "+JSON.stringify(profile));
+    console.log("google user has checked in");  
 }

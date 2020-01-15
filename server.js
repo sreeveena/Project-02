@@ -22,7 +22,9 @@ app.use(express.json());
 
 // Import routes and give the server access to them.
 var routes = require("./controllers/auth_controller.js");
+var routes1 = require("./controllers/event_controller.js");
 app.use(routes);
+app.use(routes1);
 //a USE route to home page
 app.get('/',function (req, res) {
   res.sendFile(path.join(__dirname + '/html/index.html'));
