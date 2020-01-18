@@ -24,7 +24,11 @@ function getEvents(lat, lon) {
         data: {lon: lon, lat:lat, date:startDate}
     }).then(function (response){
         // console.log(response);
-        $(".events").html(response.results[0].assetName);
+        for(var i = 0; i<10; i++){
+            $(".events").html(response.results[0].assetName);
+            var table = "";
+        }
+        
         
     });
 }

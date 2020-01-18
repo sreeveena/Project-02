@@ -21,27 +21,27 @@
     <a href="#" id="signOut" onclick="eventSignOut();">Sign out</a>
     <div class="login-form">
         <div class="register-form">
-            <form action="/api/register">
+            <form id="reg" action="/api/register">
                 <div class="container">
                     <h1>Register</h1>
-                    <label for="email"><b>Email</b></label>
+                    <label for="email"><b>Email</b> <div id="valiEmail"></div></label>
                     <input type="text" placeholder="Enter Email"  name="email" id="email" required>
 
-                    <label for="psw"><b>Password</b></label>
+                    <label for="psw"><b>Password</b><div id="valiPsw"></div></label>
                     <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-                    <label for="psw-repeat"><b>Repeat Password</b></label>
-                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                    <label for="psw-repeat"><b>Repeat Password</b><div id="valiRepeatPsw"></div></label>
+                    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat"required>
 
                     <button type="submit" class="registerbtn">Submit</button>
                 </div>
             </form>
         </div>
         <div class="signin-form">
-            <form action="/api/auth">
+            <form id="sign" action="/api/auth">
                 <div class="container">
                 <h1>Sign in</h1>
-                <label for="email"><b>Email</b></label>
+                <label for="email"><b>Email</b><div id="valiSignEmail"></div></label>
                 <input type="text" placeholder="Enter Email" name="email" id="signEmail" required>
             
                 <label for="psw"><b>Password</b></label>

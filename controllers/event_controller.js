@@ -14,7 +14,7 @@ router.post("/api/events", function(req, res) {
     request(queryURL,{json: true}, function(err,result,body){
         if(err)
         return console.log(err);
-        console.log(body);
+        // console.log(body);
         res.json (body);
     });
     
