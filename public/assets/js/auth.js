@@ -180,6 +180,7 @@ function checkPasswordMatch() {
         $("#psw-repeat").css("border-color", "red");
         return false;
     }else{
+        $("#valiRepeatPsw").html("");
         $("#psw-repeat").css("border-color", "white");
         return true;
     }
