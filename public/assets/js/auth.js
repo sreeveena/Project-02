@@ -19,9 +19,10 @@ $(function() {
         checkPasswordMatch(psw);
     });
     $(".registerbtn").on("click", function(event) {
+       
       // Make sure to preventDefault on a submit event.
       event.preventDefault();  
-      if(!checkPasswordMatch($("#psw-repeat")) || !(validateEmail($("#email"), email, "#valiEmail")))
+      if(!checkPasswordMatch($("#psw-repeat")) || !(validateEmail($("#email"), $("#email").val(), "#valiEmail")))
       return;
       var email = document.getElementById("email").value;
       var password = document.getElementById("psw").value;
@@ -62,6 +63,10 @@ function registerUser(email, password, provider){
         function(err) {
             console.log("Registered User");
             console.log(err);
+            if(provider != "events") {
+                authUser(email,"", provider);
+            }
+            
         }
     );
 }
@@ -136,12 +141,13 @@ function onSignIn(googleUser) {
 //   console.log("ID Token: " + id_token);
 //registerUser function call with google email parameters.
     registerUser(profile.getEmail(),"", "google");
-    authUser(profile.getEmail(),"", "google");
+    // authUser(profile.getEmail(),"", "google");
     console.log("profile "+JSON.stringify(profile));
     console.log("google user has checked in");  
 }
 //--------------------- function to validate email--------------------------
 function validateEmail(elem, email, name){
+    console.log("email from auth:" + email);
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(email == "" || !re.test(String(email).toLowerCase())){
         elem.css("border-color", "red");

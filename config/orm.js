@@ -10,6 +10,8 @@ var orm = {
         if (err) {
             throw err;
         }
+        // console.log("orm");
+        // console.log(result);
         cb(result);
         });
     },

@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var Crypto = require('crypto-js');
 
 // Import the model (auth.js) to use its database functions.
 var auth = require("../models/users.js");
@@ -8,11 +9,13 @@ var auth = require("../models/users.js");
 router.post("/api/auth/:email", function(req, res) {
     var condition = "email = '" + req.params.email+"'"+ " and provider = '"+req.body.provider + "'";
   auth.selectOne(condition,function(data) {
-    //   console.log("select one " + condition);
+    //    console.log("select one " + condition);
+    //    console.log(data[0]);
       if(data[0].provider){
         if(data[0].provider && data[0].provider == "events"){
+            var encryptedPassword = Crypto.SHA256(req.body.password).toString();
             // console.log("Session userid in first if - " + req.session.userid);
-            if( data[0].password == req.body.password){
+            if( data[0].password == encryptedPassword){
                 req.session.userid = req.params.email;
                 // console.log("Session userid - " + req.session.userid);
                 res.json({ result:"success" });
@@ -35,12 +38,17 @@ router.post("/api/auth/:email", function(req, res) {
 });
 
 router.post("/api/register", function(req, res) {
+    var encryptedPassword = "";
+    if(req.body.password != ""){
+         encryptedPassword = Crypto.SHA256(req.body.password).toString();  
+        //  console.log(encryptedPassword);
+    }
     // console.log("email in auth_controller " + req.body.email);
     // console.log("password in auth_controller " + req.body.password);
     var condition = "email = '" + req.body.email + "'" + " and provider = '"+ req.body.provider+ "'";
     auth.selectOne(condition,function(data) {
         if (data.length <= 0) {
-            auth.insertOne(["email","password","provider"], ["'" + req.body.email + "'","'" + req.body.password + "'","'" + req.body.provider + "'"], function(result) {
+            auth.insertOne(["email","password","provider"], ["'" + req.body.email + "'","'" + encryptedPassword + "'","'" + req.body.provider + "'"], function(result) {
                 // Send back the ID of the new quote
                 res.json({ id: result.insertId });
               });
