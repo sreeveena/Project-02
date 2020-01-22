@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>jQuery UI Accordion - Default functionality</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+		<link rel="stylesheet" href="/resources/demos/style.css" />
+		<link href="jquery-ui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<style>
+			 #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+				  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+			      #sortable li span { position: absolute; margin-left: -1.3em; }
+
+		</style>
+
+		<script>
+			$(function() {
+				$('#accordion').accordion();
+			});
+		</script>
+		<script>
+			$(function() {
+				$('#datepicker').datepicker();
+			});
+		</script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" src="img/logo.png"></a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Motives<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Schedule</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a
+							class="nav-link dropdown-toggle"
+							href="#"
+							id="navbarDropdown"
+							role="button"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+						>
+							Sports
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Cycling</a>
+							<a class="dropdown-item" href="#">Equestrian</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Swimming</a>
+							<a class="dropdown-item" href="#">Running</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" tabindex="-1" aria-disabled="false">About</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				</form>
+			</div>
+		</nav>
+		</div>
+		<div class="DC">
+			<div id="tabs" class="ui-tabs ui-corner-all ui-widget ui-widget-content">
+        <ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+        
+				<li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="tabs-1" aria-labelledby="ui-id-15" aria-selected="false" aria-expanded="false">
+          <a href="#tabs-1" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-15">First</a>
+      </li>
+   <li role="tab" tabindex="0" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab ui-tabs-active ui-state-active" aria-controls="tabs-2" aria-labelledby="ui-id-16" aria-selected="true" aria-expanded="true">
+     <a href="#tabs-2" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-16">Second</a>
+     
+    </li>
+    <li role="tab" tabindex="-1" class="ui-tabs-tab ui-corner-top ui-state-default ui-tab" aria-controls="tabs-3" aria-labelledby="ui-id-17" aria-selected="false" aria-expanded="false">
+      <a href="#tabs-3" role="presentation" tabindex="-1" class="ui-tabs-anchor" id="ui-id-17">Third</a>
+    </li>
+  
+      <div id="accordion">
+					<h3>2020 United Airlines Rock 'n' Roll Half Marathon San Francisco</h3>
+					<div>
+						<p>
+              <p id="date">Date: <input type="text" id="datepicker" /></p>
+            </p>
+            <p id="one"></p>
+					</div>
+					<h3>2020 Santa Cruz Half Marathon, 10K, and 5K</h3>
+					<div>
+						<p>
+              <p id="date">Date: <input type="text" id="datepicker" /></p>
+            </p>
+            <p id="two"></p>
+					</div>
+					<h3>2020 Marin County Half Marathon, 10K & 5K</h3>
+					<div>
+						<p>
+              <p id="date">Date: <input type="text" id="datepicker" /></p>
+						</p>
+				<p id="three"></p>
+					</div>
+					<h3>San Francisco 5K & 10K Run for Special Olympics - Register</h3>
+					<div>
+						<p>
+              Register <a href="" input-form=""></a><form action="/server.js">
+              <select name="Run">
+                <option value="5k-run">5K Run</option>
+                <option value=10k-run">10K Run</option>
+                <option value="SO">Special Olympics</option>
+              </select>
+              <br><br> 
+              <input type="submit">
+            </form>
+						</p>
+						<p>
+              <p id="date">Date: <input type="text" id="datepicker" /></p>
+						</p>
+          </div>
+          <div id="tabs-2">
+            
+		
+          </div>
+          <div id="tabs-3">
+          </ul>
+          </div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
