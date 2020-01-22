@@ -9,13 +9,13 @@
 body {
 
 	background-color: rgba(112, 164, 241, 0.475);
+	background-image: url("../img/Blair471.jpg");
+	background-clip: 90 ;
+	background-position: center;
+
 
 }
 
-.DC{
-	padding-top: 1.5%;
-	padding-left: 1%;
-}
 
 #date {
 	padding-top: 1.5%;
@@ -23,8 +23,12 @@ body {
 
 }
 
+.containerone {
+	padding-top: 2%;
+	padding-bottom: 5%;
+}
 #accordion {
-	padding-top: 3.5%;
+	padding-top: 4%;
 }
 }
 .ui-helper-hidden {
