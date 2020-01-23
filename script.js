@@ -23,7 +23,7 @@ var style = {
   // Create a token or display an error when the form is submitted.
 var form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
-//   event.preventDefault();
+   event.preventDefault();
 
   stripe.createToken(card).then(function(result) {
     if (result.error) {
@@ -55,6 +55,11 @@ function stripeTokenHandler(token) {
   }
 
   $("#payment-form").on("submit", function(result){
+    clearCardDetails();
     $('#exampleModal').modal('show');
 
   })
+  function clearCardDetails() {
+    $(".InputElement").val("");
+    
+}
