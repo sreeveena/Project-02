@@ -62,3 +62,4 @@ function createEventsTable(data){
     // appends <table> into <body>
     mybody.appendChild(mytable);
 }
+
