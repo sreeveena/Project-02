@@ -1,7 +1,6 @@
 // Set your publishable key: remember to change this to your live publishable key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-$('#exampleModal').modal('toggle');
-$('#exampleModal').modal('toggle');
+// $('#exampleModal').modal('hide');
 
 var stripe = Stripe('pk_test_AdliwsOiJUNjl5P7ZLoOAxPn00yyVlOakY');
 var elements = stripe.elements();
@@ -24,7 +23,7 @@ var style = {
   // Create a token or display an error when the form is submitted.
 var form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
-  event.preventDefault();
+//   event.preventDefault();
 
   stripe.createToken(card).then(function(result) {
     if (result.error) {
