@@ -13,13 +13,6 @@ $(function() {
             });
         }
         return;
-        // var email = document.getElementById("email").value;
-        // var password = document.getElementById("psw").value;
-  
-        // console.log("user entered email:" + document.getElementById("email").value);
-        // console.log("user entered password:" +document.getElementById("psw").value);
-        // registerUser(email,password, "events");
-        // $('#reg').find('input').val('');
     });
 });
 
