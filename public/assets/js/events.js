@@ -1,16 +1,32 @@
+var lat = "";
+var lon = "";
+function processSearch(){
+    var searchEvent = $("#searchEvent").val();
+    var searchLocation = $("#searchLocation").val();
+    if(searchEvent != ""){
+     query = "query="+searchEvent+"&";   
+    }
+    if(searchLocation != ""){
+        query = query+"near="+searchLocation;   
+    }
+    if(searchLocation == "" && searchEvent == ""){
+        query = "&lat_lon="+lat +","+lon ;   
+    }
+    $.ajax({
+        url: "/api/events",
+        method: "POST",
+        data: {query: query, date: todaysDate()}
+    }).then(function (response){
+        // console.log(response);
+        createEventsTable(response);
+        
+    });
+}
 $(function() {
     $("#searchLocation").on("keypress", function(e) {
         
         if(e.which === 13){
-            $.ajax({
-                url: "/api/levents",
-                method: "POST",
-                data: {city:$("#searchLocation").val(), date: todaysDate()}
-            }).then(function (response){
-                // console.log(response);
-                createEventsTable(response);
-                
-            });
+            processSearch();
         }
         return;
     });
@@ -20,15 +36,7 @@ $(function() {
     $("#searchEvent").on("keypress", function(e) {
        
         if(e.which === 13){
-            $.ajax({
-                url: "/api/qevents",
-                method: "POST",
-                data: {query:$("#searchEvent").val(), date: todaysDate()}
-            }).then(function (response){
-                // console.log(response);
-                createEventsTable(response);
-                
-            });
+            processSearch();
         }
         return;
     });
@@ -37,6 +45,8 @@ $(function() {
 function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
+          lat = position.coords.latitude;
+          lon = position.coords.longitude;
         getEvents(position.coords.latitude, position.coords.longitude);
         
       });
@@ -57,10 +67,11 @@ function getLocation() {
     return startDate;
   }
 function getEvents(lat, lon) {
+    query = "&lat_lon="+lat +","+lon ;
     $.ajax({
         url: "/api/events",
         method: "POST",
-        data: {lon: lon, lat:lat, date:todaysDate()}
+        data: {query: query, date:todaysDate()}
     }).then(function (response){
         // console.log(response);
         createEventsTable(response);
