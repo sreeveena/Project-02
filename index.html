@@ -8,36 +8,45 @@
   <meta name="shareaholic:site_id" content="71d1fee0aaacb0afde14b426c0ef89b1" />
   <script data-cfasync="false" async src="https://cdn.shareaholic.net/assets/pub/shareaholic.js"></script>
   <!-- END SHAREAHOLIC CODE -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <!-- <script src="/Users/kaddala/Documents/GitHub/Project-02/models/payment.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- <script src="/Users/kaddala/Documents/GitHub/Project-02/models/payment.js"></script> -->
 </head>
+
 <body>
-  <form id="payment-form">
-    <div class="form-row">
-      <label for="card-element">
-        Credit or debit card
-      </label>
-      <div id="card-element">
-        <!-- A Stripe Element will be inserted here. -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <form id="payment-form">
+          <div class="form-row">
+            <label for="card-element">
+              Credit or debit card
+            </label>
+            <div id="card-element">
+              <!-- A Stripe Element will be inserted here. -->
+            </div>
+
+            <!-- Used to display Element errors. -->
+            <div id="card-errors" role="alert"></div>
+          </div>
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Submit Payment
+          </button>
+
       </div>
-  
-      <!-- Used to display Element errors. -->
-      <div id="card-errors" role="alert"></div>
     </div>
-  
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Submit Payment
-  </button>
-  
+  </div>
+
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -55,7 +64,6 @@
       </div>
     </div>
   </div>
-</form>
-
+  </form>
   <script src="./script.js"></script>
 </body>

@@ -33,7 +33,7 @@ form.addEventListener('submit', function(event) {
     } 
     else {
       // Send the token to your server.
-     // stripeTokenHandler(result.token);
+     stripeTokenHandler(result.token);
      console.log(result.token)
     }
   });
@@ -49,17 +49,17 @@ function stripeTokenHandler(token) {
     hiddenInput.setAttribute('value', token.id);
     form.appendChild(hiddenInput);
     console.log(token);
+      // clearCardDetails();
+      $('#exampleModal').modal('show');
+      $("#closeModal").click(function(){
+        // window.location.href = "./index.html"
+        //we are redirecting in the API Routes once the backend functionality is completed for event details.
+        var eventName = {
+          name: $("#eventName").val().trim()
+        }
+        $.post("/api/payment", eventName, function(data){
 
-    // Submit the form
-    form.submit();
-  }
-
-  $("#payment-form").on("submit", function(result){
-    clearCardDetails();
-    $('#exampleModal').modal('show');
-
-  })
-  function clearCardDetails() {
-    $(".InputElement").val("");
-    
-}
+          console.log("data sent")
+        });
+      });
+    }
