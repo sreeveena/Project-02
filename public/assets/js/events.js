@@ -89,8 +89,8 @@ function getEvents(lat, lon) {
             url: "https://geocode.xyz/" + lat + "," + lon + "?json=1",
             method: "GET",
         }).then(function (response){
-            console.log(response);
-            console.log(response.city, response.state);
+            // console.log(response);
+            // console.log(response.city, response.state);
             $("#searchLocation").val(response.city + "," + response.state);
         });
     });
@@ -104,6 +104,11 @@ function createEventsTable(data){
     var expand = "true";
     var collapsed = "";
     var show = "show";
+    var assetGuidText = "";
+    // document.createElement("div");
+//         assetGuidText.setAttribute("id","guid"+j);
+//         assetGuidText.innerHTML = data.results[j].assetGuid;
+//         assetGuidText.style.display = "none";
     for(var j = 0; j < data.results.length; j++) {
         if(j!=0){
             expand = "false";
@@ -125,7 +130,7 @@ function createEventsTable(data){
                 <div> ${formatedDate(data.results[j].activityStartDate)}</div>
                 <div>${data.results[j].place.placeName} , 
                 ${data.results[j].place.cityName} , ${data.results[j].place.stateProvinceCode}</div>
-              <button onclick="register('event1')">Register</button>
+              <button onclick="register('${data.results[j].assetGuid}')">Register</button>
             </div>
           </div>
           
@@ -136,69 +141,13 @@ function createEventsTable(data){
     }
     home.append(accordion);
 }
-// ---------------------------Create Events Table --------------------------
-// function createEventsTable(data){
-//     $("#eventsTable").remove();
-//     var mybody = document.getElementsByTagName("body")[0];
-//     var mytable = document.createElement("table");
-//     mytable.setAttribute("id","eventsTable");
-//     var mytablebody = document.createElement("tbody");
-//     mytablebody.setAttribute("id","eventsTBody");
-//     for(var j = 0; j < data.results.length; j++) {
-//         // creates a <tr> element
-//         mycurrent_row = document.createElement("tr");
-//         mycurrent_row.setAttribute("id","eventsTr");
-//         // creates a <td> element
-//         date_cell = document.createElement("td");
-//         date_cell.setAttribute("class","eventsDate");
 
-//         eventDate = document.createTextNode(formatedDate(data.results[j].activityStartDate));
-//         // eventDate = document.createTextNode(data.results[j].activityStartDate);
-
-
-//         mycurrent_cell = document.createElement("td");
-//         mycurrent_cell.setAttribute("class","eventsTd");
-        
-//         // creates a Text Node
-//         currenttext = document.createTextNode(data.results[j].assetName);
-//         addresstext = document.createTextNode(data.results[j].place.placeName + " , "+
-//         data.results[j].place.cityName+ " , "+ data.results[j].place.stateProvinceCode);
-//         //http://api.amp.active.com/v2/search?asset.assetGuid=7e0cbff6-98ce-4a64-addf-4de5a85b78c8&api_key=9eqk4qg7mf27c4qwe5vxd79r
-//         // use the above url query format for querying only this event for registeration.
-//         //  the asset guid is unique for event.
-//         assetGuidText = document.createElement("div");
-//         assetGuidText.setAttribute("id","guid"+j);
-//         assetGuidText.innerHTML = data.results[j].assetGuid;
-//         assetGuidText.style.display = "none";
-//         //create registration button
-//         button = document.createElement("button");
-//         button.innerHTML = "Register";
-//         button.setAttribute("class","eventsButton");
-//         button_cell = document.createElement("td");
-//         date_cell.appendChild(eventDate);
-//         // appends the Text Node we created into the cell <td>
-//         mycurrent_cell.appendChild(currenttext);
-//         mycurrent_cell.appendChild(assetGuidText);
-//         mycurrent_cell.appendChild(addresstext);
-//         // appends the cell <td> into the row <tr>
-//         mycurrent_row.appendChild(date_cell);
-//         mycurrent_row.appendChild(mycurrent_cell);
-//         button_cell.appendChild(button);
-//         mycurrent_row.appendChild(button_cell);
-//         // appends the row <tr> into <tbody>
-//         mytablebody.appendChild(mycurrent_row);
-//     }
-//     mytable.appendChild(mytablebody);
-//     // appends <table> into <body>
-//     mybody.appendChild(mytable);
-    
-// }
 
 function formatedDate(date){
-console.log(date);
+// console.log(date);
 // 2020-03-17T22:15:00
     date = date.substring(0, 10);
-    console.log(date);
+    // console.log(date);
     d = new Date(date);
     formatedStr = getMonthString(d.getMonth()) + "  "+ d.getDate()+ "  "+d.getFullYear();
     return formatedStr;
@@ -210,4 +159,7 @@ function getMonthString(num){
 return monthNames[num];
 }
 
-
+//register function will redirect to register.html
+function register(asset){
+    window.location.href += "register?asset="+asset;
+}
