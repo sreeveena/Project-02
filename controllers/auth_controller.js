@@ -43,16 +43,19 @@ router.post("/api/register", function(req, res) {
          encryptedPassword = Crypto.SHA256(req.body.password).toString();  
         //  console.log(encryptedPassword);
     }
-    // console.log("email in auth_controller " + req.body.email);
-    // console.log("password in auth_controller " + req.body.password);
+    console.log("email in auth_controller " + req.body.email);
+    console.log("password in auth_controller " + req.body.password);
     var condition = "email = '" + req.body.email + "'" + " and provider = '"+ req.body.provider+ "'";
+    console.log("condition: "+ condition);
     auth.selectOne(condition,function(data) {
         if (data.length <= 0) {
             auth.insertOne(["email","password","provider"], ["'" + req.body.email + "'","'" + encryptedPassword + "'","'" + req.body.provider + "'"], function(result) {
                 // Send back the ID of the new quote
                 res.json({ id: result.insertId });
               });
-        } 
+        } else{
+            res.json({id: data[0].id});
+        }
     });
 
     

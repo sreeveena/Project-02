@@ -18,6 +18,7 @@ $(function() {
         var pswRepeat = $(this).val();
         checkPasswordMatch(psw);
     });
+    
     $(".registerbtn").on("click", function(event) {
        
       // Make sure to preventDefault on a submit event.
@@ -54,17 +55,19 @@ function registerUser(email, password, provider){
         password: password,
         provider: provider
     };
-
+// console.log("line 58: register user");
     // Send the PUT request.
     $.ajax("/api/register", {
         type: "POST",
         data: user
-        }).then(
-        function(err) {
+        }).then(   
+        function(res, err) {
             console.log("Registered User");
-            console.log(err);
-            if(provider != "events") {
-                authUser(email,"", provider);
+            console.log(res);
+            if(res.id != ""){
+                $("#registerModal").modal('hide');
+                if(provider != "events") 
+                    authUser(email,"", provider);
             }
             
         }
@@ -83,9 +86,12 @@ function authUser(email, password, provider){
         type: "POST",
         data: password
         }).then(
-        function(res) {
+        function(res, err) {
             console.log(res);
-            checkSession();
+            if(res.result == "success"){
+                $("#loginModal").modal('hide');
+                checkSession();
+            }
         }
     );
 }
@@ -96,9 +102,10 @@ function checkSession(){
       }).then(
         function(res) {
           console.log("session id " + res.id);
-        //   console.log(res);
+          console.log(res);
           if(res.id) {
-              $(".login-form").hide();
+              $("#register-form").hide();
+              $("#signin-form").hide();
               $(".app").show();
               $("#app-content").html("Welcome " + res.id + "!");
               $("#signOut").show();
