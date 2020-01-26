@@ -92,12 +92,34 @@
                         <div class="app">
                             <div id="app-content"></div>
                             <div id="sign-out"></div>
+                            <button id="registered-events" type="button"  data-toggle="modal" data-target="#registeredEventsModal">
+                              Registered Events
+                            </button>
                         </div>
                     </li>
 				</ul>
             </div>
             
         </nav>
+        <div class="modal fade" id="registeredEventsModal" tabindex="-1" role="dialog" aria-labelledby="registerEventsModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="registerEventsModalLabel">Register Events</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <!-- code will generate from database for all the list of user registered events. -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
