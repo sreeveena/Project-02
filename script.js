@@ -28,6 +28,9 @@ form.addEventListener('submit', function(event) {
   stripe.createToken(card).then(function(result) {
     if (result.error) {
       // Inform the customer that there was an error.
+
+      console.log("entered here!")
+
       var errorElement = document.getElementById('card-errors');
       errorElement.textContent = result.error.message;
     } 
