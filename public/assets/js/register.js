@@ -29,7 +29,7 @@ function createEventTable(data){
         <div>${data.results[0].activityStartDate}</div>
         <div>${data.results[0].place.placeName + " , "+
         data.results[0].place.cityName+ " , "+ data.results[0].place.stateProvinceCode}</div>
-        <button class="btn success">Register</button>
+        
         <div></div>
 
         <div> About this event </div>
@@ -44,6 +44,37 @@ function createEventTable(data){
         
         home.append(eventTable);
         eventTable.append(eventData);
+
+        const myApiKey = 'AIzaSyD-wGV-73Rq0qk5sgzrGXauPnJ-J1kgGcU';
+        const lat1 = parseFloat(data.results[0].place.latitude);
+        const lng1 = parseFloat(data.results[0].place.longitude);
+        const zoom = 12;
+    
+        const parentElement = document.getElementById('map'); 
+        const script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD-wGV-73Rq0qk5sgzrGXauPnJ-J1kgGcU';
+        script.async = true;
+        script.defer = true;
+        script.onload = function () {
+            var uluru = { lat: lat1, lng: lng1};
+            var map = new google.maps.Map(parentElement, {
+                center: uluru,
+                zoom: zoom
+            });
+
+            var marker = new google.maps.Marker({ position: uluru, map: map });
+        };
+        parentElement.insertBefore(script, null);
+
+
+        
+        // The location of Uluru
+        // la = parseFloat(data.results[0].place.latitude);
+        // lo = parseFloat(data.results[0].place.longitude)
+        // var location = { lat: la, lng: lo};
+        // console.log(location)
+        // // The map, centered at location
+        // initMap.bind(null, location);
         
     
 }

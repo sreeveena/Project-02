@@ -4,6 +4,7 @@ var Crypto = require('crypto-js');
 
 // Import the model (auth.js) to use its database functions.
 var auth = require("../models/users.js");
+var cards = require("../models/cards.js");
 
 // Create all our routes and set up logic within those routes where required.
 router.post("/api/auth/:email", function(req, res) {
@@ -37,6 +38,14 @@ router.post("/api/auth/:email", function(req, res) {
   });
 });
 
+router.post("/api/savecard", function(req, res) {
+    cards.insertOne(["cardnum","expiry","cvv","zipcode"], ["'" + req.body.cardnum + "'","'" + req.body.expiry 
+    + "'","'" + req.body.cvv + "'","'" + req.body.zipcode], function(result) {
+        // Send back the ID of the new quote
+        res.json({ id: result.insertId });
+      });
+});
+
 router.post("/api/register", function(req, res) {
     var encryptedPassword = "";
     if(req.body.password != ""){
@@ -57,8 +66,6 @@ router.post("/api/register", function(req, res) {
             res.json({id: data[0].id});
         }
     });
-
-    
 });
 
 router.get("/api/session", function(req,res) {
