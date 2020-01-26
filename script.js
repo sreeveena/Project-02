@@ -36,6 +36,7 @@ form.addEventListener('submit', function(event) {
     } 
     else {
       // Send the token to your server.
+      console.log("entered success here")
      stripeTokenHandler(result.token);
      console.log(result.token)
     }
@@ -52,7 +53,7 @@ function stripeTokenHandler(token) {
     hiddenInput.setAttribute('value', token.id);
     form.appendChild(hiddenInput);
     console.log(token);
-      // clearCardDetails();
+      clearCardDetails();
       $('#exampleModal').modal('show');
       $("#closeModal").click(function(){
         // window.location.href = "./index.html"
@@ -65,4 +66,8 @@ function stripeTokenHandler(token) {
           console.log("data sent")
         });
       });
+    }
+
+    function clearCardDetails(){
+      $(".card-errors").val("");
     }

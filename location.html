@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+// Initialize and add the map
+function initMap() {
+
+    $.get( "http://api.amp.active.com/v2/search/?near=94536&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=3njmjeq8nryub3zdva8vm6h5", function( data ) {
+            
+        // The location of Uluru
+      la = parseFloat(data.results[0].place.latitude);
+      lo = parseFloat(data.results[0].place.longitude)
+      var uluru = { lat: la, lng: lo};
+      console.log(uluru)
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+        document.getElementById('map'), { zoom: 8, center: uluru });
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({ position: uluru, map: map });
+    });
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-wGV-73Rq0qk5sgzrGXauPnJ-J1kgGcU&callback=initMap">
+    </script>
+  </body>
+</html>
