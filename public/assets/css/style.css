@@ -1,0 +1,14 @@
+/* Layout helpers
+----------------------------------*/
+body {
+
+	background-color: rgba(112, 164, 241, 0.475);
+	background-image: url("../img/Blair471.jpg");
+	background-clip: 90 ;
+	background-position: center;
+}
+.nav-link{
+	font-weight: bold;
+	 
+}
+

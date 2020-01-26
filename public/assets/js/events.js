@@ -23,6 +23,7 @@ function processSearch(){
         
     });
 }
+//function to search for events in a particular location
 $(function() {
     $("#searchLocation").on("keypress", function(e) {
         if(e.which === 13){
@@ -31,7 +32,7 @@ $(function() {
         return;
     });
 });
-
+//function to search for  particular events
 $(function() {
     $("#searchEvent").on("keypress", function(e) {
         if(e.which === 13){
@@ -39,6 +40,16 @@ $(function() {
         }
         return;
     });
+});
+var popper ="";
+$(function() {
+    $("#reg").hide();
+    $("#registerButton").on("click", function(e){
+        var ref = $("#registerButton");
+        var popup = $("#reg");
+        popup.show();
+        popper = new popper(ref,popup,{placement:'top'});
+    });  
 });
 
 function getLocation() {
