@@ -9,6 +9,16 @@ CREATE TABLE users (
   PRIMARY KEY(id)
 );
 
+
+CREATE TABLE cards (
+  id int AUTO_INCREMENT,
+  user_id int,
+  cardnum varchar(20),
+  expiry varchar(10),
+  cvv int,
+  zipcode varchar(10)
+);
+
 CREATE TABLE registered_events (
   id int AUTO_INCREMENT,
   guid varchar(100) NOT NULL,

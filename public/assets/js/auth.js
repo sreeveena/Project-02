@@ -2,6 +2,7 @@ var sessionId = "";
 $(function() {
     $(".app").hide();
     $("#signOut").hide();
+    $("#registered-events").hide();
     $("#email").focusout(function() {  
         var email = $(this).val();
         validateEmail($(this), email, "#valiEmail");
@@ -19,6 +20,11 @@ $(function() {
         checkPasswordMatch(psw);
     });
     
+    // $("#regisButton").on("click", function(event) {
+    //     console.log("Pay now clickd");
+    //     $(location).attr('href', '/payment');
+    //   });
+
     $(".registerbtn").on("click", function(event) {
        
       // Make sure to preventDefault on a submit event.
@@ -120,6 +126,7 @@ function checkSession(){
               $(".app").show();
               $("#app-content").html("Welcome " + res.id + "!");
               $("#signOut").show();
+              $("#registered-events").show();
               $(".g-signin2").hide();
               if(res.id == "admin@motives.com" && !window.location.href.includes("admin")){
                   window.location.href = "admin";
@@ -132,6 +139,7 @@ function checkSession(){
 }
 //--------------------sign out ----------------------
 function eventSignOut(){
+    
     signOut();
     $.ajax("/api/session", {
         type: "DELETE"

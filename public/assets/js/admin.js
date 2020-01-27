@@ -1,14 +1,14 @@
-$(function() {
+$(function () {
     $.ajax({
         url: "/api/eventsforadmin",
         method: "GET",
-    }).then(function (response){
+    }).then(function (response) {
         console.log(response);
         fillAdminTable(response);
     });
 });
-function fillAdminTable(data){
-    var home = $("#events");  
+function fillAdminTable(data) {
+    var home = $("#events");
     var table = `<table class="table">
     <thead>
     <tr>
@@ -20,13 +20,13 @@ function fillAdminTable(data){
       `;
     var tableElement = $(table);
     var prevName = "";
-    var card = ""; 
+    var card = "";
     var eventName = "";
     var eventEmail = "";
     var rowSpan = 0;
     var cardTemp = "";
-    for(var j = 0; j < data.length; j++) { 
-        if(prevName == "") {
+    for (var j = 0; j < data.length; j++) {
+        if (prevName == "") {
             card = "";
             eventName = data[j].name;
             eventEmail = data[j].email;
@@ -35,18 +35,18 @@ function fillAdminTable(data){
             continue;
         }
         if (prevName != data[j].name) {
-        cardTemp = `
+            cardTemp = `
             <tr >
                 <td rowspan=${rowSpan}>${eventName} </td>
                 <td>${eventEmail} </td>
             </tr>
             `;
-        card = cardTemp + card;
-        eventName = data[j].name;
-        eventEmail = data[j].email;
-        prevName = data[j].name;
-        rowSpan = 1;
-        
+            card = cardTemp + card;
+            eventName = data[j].name;
+            eventEmail = data[j].email;
+            prevName = data[j].name;
+            rowSpan = 1;
+
         } else {
             card += `
             <tr>
@@ -56,24 +56,24 @@ function fillAdminTable(data){
             rowSpan++;
             continue;
         }
-        
+
         var card1 = $(card);
         tableElement.append(card1);
         card = "";
     }
-        cardTemp = `
+    cardTemp = `
             <tr >
                 <td rowspan=${rowSpan}>${eventName} </td>
                 <td>${eventEmail} </td>
             </tr>
             `;
-        card = cardTemp + card;
-        var card1 = $(card);
-        tableElement.append(card1);
-     var endTable = `
+    card = cardTemp + card;
+    var card1 = $(card);
+    tableElement.append(card1);
+    var endTable = `
      </tbody>
      </table>
-     `;   
-     tableElement.append($(endTable));
+     `;
+    tableElement.append($(endTable));
     home.append(tableElement);
 }

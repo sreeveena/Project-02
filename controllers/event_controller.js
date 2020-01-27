@@ -61,4 +61,89 @@ router.get("/api/eventsforadmin", function(req, res) {
     
 });
 
+//Router - REST API for registering an event
+router.post("/api/registerevent", function(req, res) {
+    var condition = "guid=" + "'" + req.body.assetGuid + "'";
+    var table = "registered_events";
+    orm.selectOne(table, condition,function(data) {
+        if (data.length <= 0) {
+            table = "registered_events";
+            var columns = ["guid","name"];
+            var values = ["'"+req.body.assetGuid+"'", "'" + req.body.assetName + "'"];
+            orm.insertOne(table,columns,values,function(data3) {
+
+                console.log(data3);
+                fetchUserId(data3.insertId,req,res);
+        
+            });
+        } else {
+            fetchUserId(data[0].id,req,res);
+        }
+    });
+    
+});
+
+//Fetch user id and add the user registration event to user_registrations table.
+function fetchUserId(eventId,req,res) {
+    var table = "users";
+    var condition = " email='" + req.body.userId + "'";
+    orm.selectOne(table,condition,function(data) {
+        console.log(data);
+        addUserRegistration(data[0].id,eventId,req,res);
+    
+    });
+}
+
+//Add event to user_registrations table.
+function addUserRegistration(id,eventId,req,res) {
+    var condition = "user_id=" + "'" + id + "' AND event_id=" + "'" + eventId + "'";
+    var table = "user_registrations";
+    orm.selectOne(table, condition,function(data) {
+        if (data.length <= 0) {
+            table = "user_registrations";
+            var columns = ["user_id","event_id","reg_date"];
+            var values = ["'"+id+"'", "'" + eventId + "'", "'" + req.body.regDate + "'"];
+            orm.insertOne(table,columns,values,function(data3) {
+                console.log(data3);
+                res.json({ id: eventId, result: "new" });
+            });
+        } else {
+            res.json({id: eventId, result: "exists"});
+        }
+    });
+
+}
+
+router.post("/api/checkregister", function(req, res) {
+    var condition = "guid=" + "'" + req.body.assetGuid + "'";
+    var table = "registered_events";
+    orm.selectOne(table, condition,function(data) {
+        if (data.length <= 0) {
+            res.json({result: "false"});
+        } else {
+            isUserRegistered(data[0].id,req,res);
+        }
+    });
+    
+});
+
+function isUserRegistered(eventId,req,res) {
+    var table = "users";
+    var condition = " email='" + req.body.userId + "'";
+    orm.selectOne(table,condition,function(data) {
+        console.log(data);
+        var id = data[0].id;
+        condition = "user_id=" + "'" + id + "' AND event_id=" + "'" + eventId + "'";
+        table = "user_registrations";
+        orm.selectOne(table, condition,function(data3) {
+            if(data3.length <= 0) {
+                res.json({result: "false"});
+            } else {
+                res.json({result: "true"});
+            }
+        });
+    });
+}
+
+
 module.exports = router;

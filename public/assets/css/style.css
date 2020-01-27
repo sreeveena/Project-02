@@ -48,3 +48,18 @@ li{
 	width:100%;
 	max-height: 450px !important;
 }
+.motivate{
+	font-size: 10px;
+	color: gray;
+}
+.google{
+	float: right;
+	padding: 45px;
+	border-left: 1px solid lightgray;
+}
+.signinbtn {
+	margin-top: 13px;
+}
+#app-content {
+	margin-top: 10px;
+}
