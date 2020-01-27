@@ -1,14 +1,16 @@
 # Project-02
 Project functionality:
 
-This project is about a website which will help users search for nearby events related to activities they're interested in. Initially they should register for events to participate by either using the register from the homepage or using google sign-in. The user can register and login to the website to save the events that they have registered for. The user may also login through google account as well.
-
+This project is about a website which will help users search for nearby events related to activities they're interested in. Initially they should register for events to participate by either using the register from the homepage or using google sign-in. The user then can login to the website to save the events that they have registered for and follow the payment process to finish the registration for the event.
 
 Techonologies used: 
 1. HTML
 2. CSS
 3. NodeJS
 4. MYSQL
+5. Javascript
+6. AJAX
+7. APIs
 
 Libraries used:
 1. express
@@ -17,8 +19,10 @@ Libraries used:
 4. popper 
 5. Google sign-in integration library
 6. mysql
+7. googleMaps API
+8. Stripe API
 
-Implementation Details:
+## Implementation Details:
 The user registration/login:  A user database was created to store user name, password and provider information (whether the user had registered with the website directly or is visiting using Google account). The password of the user is being stored with one-way hash encryption (SHA256). A session is created for a successful user login to track user activities. A registration UI element and login UI element is created for the user to register and login to the website. For users wanting to use Google account for login and registration - a google sign-in button has been introduced using Google provided html and javascript code. This code requires a Google api key (which we temporarily created for this project).
 
 code for saving encrypted one-way hash(SHA256) encrypted password
