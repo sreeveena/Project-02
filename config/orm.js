@@ -15,6 +15,18 @@ var orm = {
         cb(result);
         });
     },
+    selectAll: function(columns, tableInput, condition, cb) {
+      var queryString = "SELECT "+columns +" FROM " + tableInput + " where "+condition+";";
+      console.log(queryString);
+      connection.query(queryString, function(err, result) {
+      if (err) {
+          throw err;
+      }
+      // console.log("orm");
+      // console.log(result);
+      cb(result);
+      });
+  },
   insertOne: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table + " ("+ cols.toString()+ ") "+ "VALUES (" + vals + ") ";
     // console.log(queryString);

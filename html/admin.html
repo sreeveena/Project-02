@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+        content="796335138193-nltl3su3ttip4hiudrf2uhd818drt1gu.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <title>Registered Events </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+<body>
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/events.js"></script>
+    <script src="/assets/js/register.js"></script>
+    <script src="/assets/js/admin.js"></script>
+    <!-- NAV BAR STARTS HERE -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" src="assets/img/motivesFinal.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a href="/">
+                        <img id="logo" src="assets/img/motivesFinal.png" alt="Motives" width="50" height="50">
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/" src="assets/img/motivesFinal.png">Motives<span
+                            class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                    <a href="#" id="signOut" onclick="eventSignOut();">Sign out</a>
+                </li>
+                <li>
+                    <div class="app">
+                        <div id="app-content"></div>
+                        <div id="sign-out"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+    <div id="events">
+        <!--dynamic code is generated-->
+    </div>
+</body>
+</html>

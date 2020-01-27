@@ -95,7 +95,12 @@ function authUser(email, password, provider){
             console.log(res);
             if(res.result == "success"){
                 $("#loginModal").modal('hide');
+                $(elem).html("");
                 checkSession();
+            }else{
+                var elem=$("#invalidLogin");
+                $(elem).html("Please enter a valid email or password.");
+                $(elem).css("color", "red");
             }
         }
     );
@@ -121,6 +126,11 @@ function checkSession(){
               $("#app-content").html("Welcome " + res.id + "!");
               $("#signOut").show();
               $(".g-signin2").hide();
+              if(res.id == "admin@motives.com" && !window.location.href.includes("admin")){
+                  window.location.href = "admin";
+              }
+              fetchRegisteredEvents(res.id);
+
           }
         }
       );
@@ -132,10 +142,13 @@ function eventSignOut(){
         type: "DELETE"
       }).then(
         function(res) {
-         location.reload(); 
+          
+         sessionId = "";
+         location.assign("/");
+        
         }
-      );
-    sessionId = "";
+    );
+  
 }
 //-------------------------Google functions----------
 function signOut() {
