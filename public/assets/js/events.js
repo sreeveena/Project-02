@@ -98,7 +98,7 @@ function createEventsTable(data){
     for(var j = 0; j < data.results.length; j++) {
         // creates a <tr> element
         mycurrent_row = document.createElement("tr");
-        mycurrent_row.setAttribute("id","eventsTr");
+        mycurrent_row.setAttribute("id","eventsTr"+j);
         // creates a <td> element
         date_cell = document.createElement("td");
         date_cell.setAttribute("class","eventsDate");

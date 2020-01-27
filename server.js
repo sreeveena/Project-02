@@ -27,7 +27,7 @@ app.use(routes);
 app.use(routes1);
 //a USE route to home page
 app.get('/',function (req, res) {
-  res.sendFile(path.join(__dirname + '/html/index.html'));
+  res.sendFile(path.join(__dirname + '/form.html'));
 });
 
 
