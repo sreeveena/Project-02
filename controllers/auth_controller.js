@@ -11,7 +11,7 @@ router.post("/api/auth/:email", function(req, res) {
   auth.selectOne(condition,function(data) {
     //    console.log("select one " + condition);
     //    console.log(data[0]);
-      if(data[0].provider){
+      if(data.length>0 && data[0].provider){
         if(data[0].provider && data[0].provider == "events"){
             var encryptedPassword = Crypto.SHA256(req.body.password).toString();
             // console.log("Session userid in first if - " + req.session.userid);

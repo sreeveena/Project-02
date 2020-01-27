@@ -90,7 +90,12 @@ function authUser(email, password, provider){
             console.log(res);
             if(res.result == "success"){
                 $("#loginModal").modal('hide');
+                $(elem).html("");
                 checkSession();
+            }else{
+                var elem=$("#invalidLogin");
+                $(elem).html("Please enter a valid email or password.");
+                $(elem).css("color", "red");
             }
         }
     );
