@@ -136,6 +136,7 @@ function eventSignOut(){
         }
       );
     sessionId = "";
+    window.location.href="/";
 }
 //-------------------------Google functions----------
 function signOut() {
