@@ -127,14 +127,14 @@ We designed our database based on capturing the user logins and only after that 
 ![The Database Design](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/firebase.png "The Firebase Config")
 
 ### Google Maps API
-We searched for multiple options for grabbing a set of emojis to rate or emote about a film. We landed with Giphy APIs and we searched for the IDs we wanted to show case for our V1 of the application. We used that to append to the movie search. Every search we tag, we were able to append the emoticon to the movie we wanted to rate.
+Using google maps we embedded the maps within the registration page, and based on the event the user clicks, this will take them to that events registration page and then display the map based on the event location.
 
-![The Giphy API](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/emojiExample.gif "The Giphy API")
+![The GoogleMaps API](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/emojiExample.gif "The Giphy API")
 
 ### STRIPE API
-We used this API to share our website/application over a social media platform. For this we used the shareaholic API which gave us the necessary start for sharing our application.
+We used this API fake the payment process where we are creating an end to end exprience for finishing the registration process for the each event.
 
-![The Shareaholic API](https://github.com/Chris-Hayashi/Project-One/blob/READMEUpdatesToMaster/assets/images/ShareaholicAPI.gif "The Shareaholic API")
+![The STRIPE API](https://github.com/Chris-Hayashi/Project-One/blob/READMEUpdatesToMaster/assets/images/ShareaholicAPI.gif "The Shareaholic API")
 
 
 ## Git Flow
