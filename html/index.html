@@ -48,31 +48,38 @@
         <li>
           <a class="nav-link" href="/" src="assets/img/motivesFinal.png">Motives<span
               class="sr-only">(current)</span></a>
+              <div class="motivate">What will motivate you today!</div>
         </li>
       </ul>
       <ul class="login-form">
         <li>
-          <button id="register-form" type="button" data-toggle="modal" data-target="#registerModal">
+          <button id="register-form" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#registerModal">
             Register
           </button>
         </li>
         <li>
-          <button id="signin-form" type="button" data-toggle="modal" data-target="#loginModal">
+          <button id="signin-form" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginModal">
             Login
           </button>
         </li>
-        <li>
-          <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-          <a href="#" id="signOut" onclick="eventSignOut();">Sign out</a>
-        </li>
+        
         <li>
           <div class="app">
             <div id="app-content"></div>
             <div id="sign-out"></div>
-            <button id="registered-events" type="button" data-toggle="modal" data-target="#registeredEventsModal">
-              Registered Events
-            </button>
           </div>
+        </li>
+        <li>
+          <button id="registered-events" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#registeredEventsModal">
+            Registered Events
+          </button>
+        </li>
+        <li>
+          <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
+          <!-- <a href="#" id="signOut" onclick="eventSignOut();">Sign out</a> -->
+          <button id="signOut" type="button" class="btn btn-outline-primary" onclick="eventSignOut();">
+            Sign out
+          </button>
         </li>
       </ul>
     </div>
@@ -147,24 +154,30 @@
           </button>
         </div>
         <div class="modal-body">
-
-          <label for="email"><b>Email</b>
-            <div id="valiSignEmail"></div>
-          </label>
           <div>
-            <input type="text" placeholder="Enter Email" name="email" id="signEmail" required>
-          </div>
-          <label for="psw"><b>Password</b></label>
-          <div>
-            <input type="password" placeholder="Enter Password" name="psw" id="signPsw" required>
-          </div>
-          <div id="invalidLogin">
-
+            <div class="google">
+              <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            </div>
+            <div>
+              <label for="email"><b>Email</b>
+                <div id="valiSignEmail"></div>
+              </label>
+              <div>
+                <input type="text" placeholder="Enter Email" name="email" id="signEmail" required>
+              </div>
+              <label for="psw"><b>Password</b></label>
+              <div>
+                <input type="password" placeholder="Enter Password" name="psw" id="signPsw" required>
+              </div>
+              <button type="button" class="btn btn-primary signinbtn">Sign-in</button>
+              <div id="invalidLogin"></div>
+            </div>
+            
           </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary signinbtn">Sign-in</button>
+          <!-- <button type="button" class="btn btn-primary signinbtn">Sign-in</button> -->
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>

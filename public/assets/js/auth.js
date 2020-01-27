@@ -2,6 +2,7 @@ var sessionId = "";
 $(function() {
     $(".app").hide();
     $("#signOut").hide();
+    $("#registered-events").hide();
     $("#email").focusout(function() {  
         var email = $(this).val();
         validateEmail($(this), email, "#valiEmail");
@@ -125,6 +126,7 @@ function checkSession(){
               $(".app").show();
               $("#app-content").html("Welcome " + res.id + "!");
               $("#signOut").show();
+              $("#registered-events").show();
               $(".g-signin2").hide();
               if(res.id == "admin@motives.com" && !window.location.href.includes("admin")){
                   window.location.href = "admin";

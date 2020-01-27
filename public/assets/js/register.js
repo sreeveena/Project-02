@@ -21,15 +21,32 @@ function fetchAssetData(assetGuid) {
         }
     );
 }
+
+
 function payment() {
+
     if(sessionId) {
         $("#payment-error").html("");
-        $(location).attr('href', '/payment?userid=' + sessionId + '&assetguid=' + assetGuid + '&assetname=' + assetName + '&eventstartdate=' + eventStartDate);
+        $.ajax("/api/checkregister", {
+            type: "POST",
+            data: {assetName: assetName, assetGuid: assetGuid, userId: sessionId}
+        }).then(
+            function (res, err) {
+                if(res.result == "true") {
+                    $("#payment-error").html("This event is already registered!");
+                    $("#payment-error").css("color","red");
+                } else {
+                    location.assign('/payment?userid=' + sessionId + '&assetguid=' + assetGuid + '&assetname=' + assetName + '&eventstartdate=' + eventStartDate);
+                }
+         });
     } else {
-        $("#payment-error").html("Please login before registering for the event!");
-        $("#payment-error").css("color","red");
+            $("#payment-error").html("Please login before registering for the event!");
+            $("#payment-error").css("color","red");
     }
+    
 }
+
+
 // ---------------------------Create Events Table --------------------------
 function createEventTable(data) {
     assetName = data.results[0].assetName;
