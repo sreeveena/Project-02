@@ -17,7 +17,8 @@ CREATE TABLE cards (
   expiry varchar(10),
   cvv int,
   zipcode varchar(10)
-)
+);
+
 CREATE TABLE registered_events (
   id int AUTO_INCREMENT,
   guid varchar(100) NOT NULL,

@@ -1,6 +1,17 @@
 // Set your publishable key: remember to change this to your live publishable key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
+var assetGuid = "";
+var assetName = "";
+var eventStartDate = "";
+var userId = "";
+$(function(){
+  var urlParams = new URLSearchParams(window.location.search);
+  assetGuid = urlParams.get('assetguid');
+  assetName = urlParams.get('assetname');
+  eventStartDate = urlParams.get('eventstartdate');
+  userId = urlParams.get('userid');
 
+});
 var stripe = Stripe('pk_test_AdliwsOiJUNjl5P7ZLoOAxPn00yyVlOakY');
 var elements = stripe.elements();
 
@@ -37,7 +48,17 @@ form.addEventListener('submit', function (event) {
       // Send the token to your server.
       console.log("entered success here")
       stripeTokenHandler(result.token);
-      console.log(result.token)
+      console.log(result.token);
+
+      var regDate = eventStartDate.substr(0,10);
+      $.ajax("/api/registerevent", {
+        type: "POST",
+        data: {assetName: assetName, assetGuid: assetGuid, regDate: regDate, userId: userId}
+        }).then(
+        function (res, err) {
+            console.log(res);
+        }
+      );
     }
   });
 });

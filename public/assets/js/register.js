@@ -1,10 +1,13 @@
 var assetGuid = "";
+var assetName = "";
+var eventStartDate = "";
 $(function () {
     var urlParams = new URLSearchParams(window.location.search);
     assetGuid = urlParams.get('asset');
     fetchAssetData(assetGuid);
 
 });
+    
 function fetchAssetData(assetGuid) {
     // console.log("fetchAssetData invoked");
     $.ajax("/api/asset/" + assetGuid, {
@@ -18,9 +21,19 @@ function fetchAssetData(assetGuid) {
         }
     );
 }
+function payment() {
+    if(sessionId) {
+        $("#payment-error").html("");
+        $(location).attr('href', '/payment?userid=' + sessionId + '&assetguid=' + assetGuid + '&assetname=' + assetName + '&eventstartdate=' + eventStartDate);
+    } else {
+        $("#payment-error").html("Please login before registering for the event!");
+        $("#payment-error").css("color","red");
+    }
+}
 // ---------------------------Create Events Table --------------------------
 function createEventTable(data) {
-
+    assetName = data.results[0].assetName;
+    eventStartDate = data.results[0].activityStartDate;
     $("#eventTable").remove();
     var home = $("#eventContent");
     var eventTable = $("<div id='eventTable'>");

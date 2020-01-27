@@ -61,4 +61,38 @@ router.get("/api/eventsforadmin", function(req, res) {
     
 });
 
+router.post("/api/registerevent", function(req, res) {
+    var table = "registered_events";
+    var columns = ["guid","name"];
+    var values = ["'"+req.body.assetGuid+"'", "'" + req.body.assetName + "'"];
+    orm.insertOne(table,columns,values,function(data) {
+        console.log(data);
+        fetchUserId(data.insertId,req,res);
+    
+    });
+    
+    
+});
+
+function fetchUserId(eventId,req,res) {
+    var table = "users";
+    var condition = " email='" + req.body.userId + "'";
+    orm.selectOne(table,condition,function(data) {
+        console.log(data);
+        addUserRegistration(data[0].id,eventId,req,res);
+    
+    });
+}
+
+function addUserRegistration(id,eventId,req,res) {
+    var table = "user_registrations";
+    var columns = ["user_id","event_id","reg_date"];
+    var values = ["'"+id+"'", "'" + eventId + "'", "'" + req.body.regDate + "'"];
+    orm.insertOne(table,columns,values,function(data) {
+        console.log(data);
+        res.json({ id: eventId });
+    
+    });
+}
+
 module.exports = router;
