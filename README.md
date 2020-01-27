@@ -47,9 +47,9 @@ SQL Designer
 
 ## Wireframe Design
 
-![WireFrame Design](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/wireframe-1.png "WireFrame Design")
+![WireFrame Design](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/wireframe-final1.png "WireFrame Design")
 
-![WireFrame Design](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/wireframe-2.png "WireFrame Design")
+![WireFrame Design](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/wireframe-final2.png "WireFrame Design")
 
 ## User Story Breakdown
 User Story 1: Create a website with necessary hooks for building the backend functionality
