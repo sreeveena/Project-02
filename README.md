@@ -1,8 +1,7 @@
 # Project-02
 Project functionality:
 
-This project is about a website which will help users search for nearby events related to sports. They can also register for events to participate.
-The user can register and login to the website to save the events that they have registered for. The user may also login through google account as well.
+This project is about a website which will help users search for nearby events related to activities they're interested in. Initially they should register for events to participate by either using the register from the homepage or using google sign-in. The user can register and login to the website to save the events that they have registered for. The user may also login through google account as well.
 
 
 Techonologies used: 
