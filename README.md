@@ -1,3 +1,5 @@
+
+![logo](/public/assets/img/motivesFinal.png)
 # Project-02
 Project functionality:
 
