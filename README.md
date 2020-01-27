@@ -113,41 +113,41 @@ Once the page hits 640px, we decided to give the carousel the appropriate size a
 We used the ACTIVE API for searching all events from the ACTIVE API
 Upon search we wanted to use the response from API and dynamically append them to a HTML DIV
 
-![The ACITVE API](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/json1.png "The OMDB API")
+![The ACITVE API](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/JSON-ActiveAPI.png "The ACTIVE API")
 
 
 ### GEOLOCATION
 We use this to get the default location when the user enters the application. This will showcase the list of events displayed by using the ACTIVE api on the landing page and filter then based on their geo location.
 
-![GEOLOCATION](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/json2.png "The MovieDB API")
+![GEOLOCATION](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/geolocation_image.png "The GEOLOCATION API")
 
 ### MYSQL Configuration and Design
 We designed our database based on capturing the user logins and only after that we are capturing information on what events they signed up for along with adding hash key for encryting their passwords in the DB.
 
-![The Database Design](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/firebase.png "The Firebase Config")
+![The Database Design](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/MySQLDesign.png "The Firebase Config")
 
 ### Google Maps API
 Using google maps we embedded the maps within the registration page, and based on the event the user clicks, this will take them to that events registration page and then display the map based on the event location.
 
-![The GoogleMaps API](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/emojiExample.gif "The Giphy API")
+![The GoogleMaps API](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/googlemapsAPI.png "The GoogleMaps API")
 
 ### STRIPE API
 We used this API fake the payment process where we are creating an end to end exprience for finishing the registration process for the each event.
 
-![The STRIPE API](https://github.com/Chris-Hayashi/Project-One/blob/READMEUpdatesToMaster/assets/images/ShareaholicAPI.gif "The Shareaholic API")
+![The STRIPE API](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/StripeAPI.png "The STRIPE API")
 
 
 ## Git Flow
 We started with one of our team members creating master and added all of our other team members as collaborators:
 We did the initial pull from master, we added the structure for the framework we are building with folders and files. We then created a PR and merged those changes so that all of us can pull from that point to start work on each of our components 
 
-![GitFlow 1](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/gitFlow1.png "GitFlow 1")
+![GitFlow 1](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/Git_Image1.png "GitFlow 1")
 
-![GitFlow 2](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/gitFlow2.png "GitFlow 2")
+![GitFlow 2](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/GIT-Image2.png "GitFlow 2")
 
-![GitFlow 3](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/gitFlow3.png "GitFlow 3")
+![GitFlow 3](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/gitImage3.png "GitFlow 3")
 
-![GitFlow 4](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/gitFlow4.png "GitFlow 4")
+![GitFlow 4](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/gitimage4.png "GitFlow 4")
 
 ## DEMO Gif Walkthrough
 
