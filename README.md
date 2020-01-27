@@ -5,16 +5,6 @@ The idea behind creating this application was to provide end users a one stop sh
 Our app's simplistic design and functionality ensures the users don't have to look at multiple pages (for example: creating login, sign in or search based on location...) as to where they should go and take the steps for particiapating in an event. It's all in one place! We ensure the user experience is not lost throughout our app, by creating modals within the landing page for registering or signing in so that they are not taken to a separate window and where they have to comeback to the main landing page to look for their events.
 
 
-Project functionality:
-
-This project is about a website which will help users search for nearby events related to activities they're interested in. Initially they should register for events to participate by either using the register from the homepage or using google sign-in. The user then can login to the website to save the events that they have registered for and follow the payment process to finish the registration for the event.
-
-# Project-One
-Idea behind this app was based on how we currently depend on redundant and elaborate information we find on the internet. We don’t truly understand IF we could watch a particular movie (or) TV Show.
-We depend on websites that write a 2 page long reviews which we don’t really need, we just simply want to know if its worth our time or not. We don’t get this information anywhere….. UNTIL NOW!
-Our website is a social platform where a particular  user comes in search for a movie/tv show, and based on what they choose how they feel about the movie/tv show using one of the emoticons we provide as options and write a quick sentence about how they really feel about the movie/tv show.
-If they really like the movie or tv show,  they can then create a bucket and share this with their friends and family, YES THEY CAN Absolutely do that! This is our differentiator and this is why users will be attracted to use our website for sharing their opinions with their friends and family about the movies/tv shows we have in this day and age.
-
 ## Table of contents
 How the APP works
 Technologies Used
@@ -34,14 +24,14 @@ Code Snippets
 
 ## How the APP works
 
-PixFlix is built upon the usage of APIs, libraries, and firebase. As the user enters the name of a movie or tv show and hits the search button, an ajax call to OMDB api will display the image and title of the movie on a card below the search bar. The user has the option to add an emoji and type in a comment below the movie poster. Additionally, if he/she were to hover over the movie poster, a dialogue box will appear displaying the description of the movie. This is done using Popper.js. When the user is done, he/she may click the “Add to bucket” button, and this will create an object on firebase containing all the data the user has provided, such as the movie title, movie poster, comment, and emoji.  Once the movie object is pushed up to firebase, a “child_added” function will execute and populate the empty cards in “My bucket” with the information contained within that object. When the user is satisfied with the movies in the bucket, he/she has the option of sharing that bucket by clicking a button which will send a link to the website through facebook.
+MOTIVES is built upon the usage of APIs, libraries, and MySQL. As the user lands on the application, we initially show a list of all events that are available based on their geo-location. The user also has the ability to search for any event they want and at any location other than their default geo-location. Additionally, if the user is ready to register for the website or if they have already registered, we have provided modal pop-ups by which the experience is not lost to them. This is done using Bootstrap modals. When the user is registered/signed in, he/she may click the “Register” button on the list of events displayed on the page, and this will take them to registration page for that specific event where they can look at the event details, map location via google maps and then finally if that is the event they want to register for, they can click on the "Register" for this event button and which will take them to the payment page. We have additionally created an admin portal, where the admin for MOTIVES can look at which all users have registered for events and event details.
 
 ## Technologies Used
 HTML
 Javascript/jQuery
-FireBase
-APIs (OMDB, The MovieDB, GIPHY, Shreaholic)
-Javascript Libraries (Popper.js)
+MySQL
+APIs
+Javascript 
 Markdown
 Bootstrap
 AJAX
@@ -53,6 +43,7 @@ ChromeDev tools
 Visual Studio Code
 Chrome browser
 MockFlow
+SQL Designer
 
 ## Wireframe Design
 
@@ -63,17 +54,25 @@ User Story 1: Create a website with necessary hooks for building the backend fun
 
 User Story 2: Add Bootstrap design for the website to improve the UI functionality 
 
-User Story 3: Add OMDI API functionality
+User Story 3:  User registration --> User will be able to register for their prefered event
 
-User Story 4: Add Trending API functionality
+User Story 4:  List of events using ACTIVE API
 
-User Story 5: Add Emoji API functionality
+User Story 5: Google Sign In functionality
 
-User Story 6: Add Shareaholic API functionality
+User Story 6: Geolocation detection functionality
 
-User Story 7: Add popper.JS libraries to the application
+User Story 7: Google maps embedding
 
-User Story 8: Additional hooks for the UI for popper.js
+User Story 8: Fake payments using STRIPE API
+
+User Story 9: Login and registration modals
+
+User Story 10: Search on events from the landing page
+
+User Story 11: Admin login and admin functionality for looking at list of events users are registered for.
+
+
 
 
 ## Task Breakdowns
