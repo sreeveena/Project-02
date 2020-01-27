@@ -95,16 +95,14 @@ Carousel for events
 Most importantly...accordion for list of events!
 Mobile responsive
 
-![Bootstrap Progression 1](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/jumbotron.png "Jumbotron Design")
-
-![Bootstrap Progression 2](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/bootstrapSnippet.png "Bootstrap Code Snippet")
+![Bootstrap Progression](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/UICarousel.png "Carousel Design")
 
 
 ## Mobile Responsiveness
 We used three breakpoints: 
 Once the page hits 640px, we decided to give the carousel the appropriate size along with the list of events in the same way we have on our website. On the register page, instead of the maps and regrtation info cluttering the page, we decided to list the maps below the registration information. 
 
-![Mobile Responsiveness](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/mobileResponseExample.gif "Mobile Responsiveness")
+![Mobile Responsiveness](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/mobile_responsive.gif "Mobile Responsiveness")
 
 
 ## API Design, Firebase, Libraries
