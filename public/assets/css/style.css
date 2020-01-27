@@ -11,4 +11,30 @@ body {
 	font-weight: bold;
 	 
 }
+#eventTable, h4{
+	padding: 20px;
+}
+#regisButton{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+.date{
+	padding-right: 20px;
+	padding-top: 20px;
+}
+.date1{
+	padding-left: 30px;
+}
+.login-form {
+	float: right;
+}
+ul{
+	list-style-type: none;
+}
+li{
+	float: left;
+}
 
+#register-form, #signin-form, .g-signin2{
+	margin-right: 20px;
+}

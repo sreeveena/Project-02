@@ -105,10 +105,7 @@ function createEventsTable(data){
     var collapsed = "";
     var show = "show";
     var assetGuidText = "";
-    // document.createElement("div");
-//         assetGuidText.setAttribute("id","guid"+j);
-//         assetGuidText.innerHTML = data.results[j].assetGuid;
-//         assetGuidText.style.display = "none";
+    
     for(var j = 0; j < data.results.length; j++) {
         if(j!=0){
             expand = "false";

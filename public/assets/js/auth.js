@@ -1,4 +1,4 @@
-
+var sessionId = "";
 $(function() {
     $(".app").hide();
     $("#signOut").hide();
@@ -19,7 +19,7 @@ $(function() {
         checkPasswordMatch(psw);
     });
     
-    $("#pay-now-btn").on("click", function(event) {
+    $("#regisButton").on("click", function(event) {
         console.log("Pay now clickd");
         $(location).attr('href', '/payment');
       });
@@ -100,6 +100,11 @@ function authUser(email, password, provider){
         }
     );
 }
+
+function getSessionId() {
+    return sessionId;
+}
+
 //-----------------------Check for session id ----------
 function checkSession(){
     $.ajax("/api/session", {
@@ -108,6 +113,7 @@ function checkSession(){
         function(res) {
           console.log("session id " + res.id);
           console.log(res);
+          sessionId = res.id;
           if(res.id) {
               $("#register-form").hide();
               $("#signin-form").hide();
@@ -129,6 +135,7 @@ function eventSignOut(){
          location.reload(); 
         }
       );
+    sessionId = "";
 }
 //-------------------------Google functions----------
 function signOut() {

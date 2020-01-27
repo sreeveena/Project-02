@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const request = require('request');
-const sendmail = require('sendmail')();
 
 router.post("/api/events", function(req, res) {
     var startDate = req.body.date;
@@ -18,6 +17,7 @@ router.post("/api/events", function(req, res) {
         // console.log(body);
         res.json (body);
     });   
+
 });
 
 router.get("/api/asset/:assetguid", function(req, res) {
