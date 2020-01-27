@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const request = require('request');
+var orm = require("../config/orm.js");
 
 router.post("/api/events", function(req, res) {
     var startDate = req.body.date;
@@ -35,5 +36,16 @@ router.get("/api/asset/:assetguid", function(req, res) {
     });   
 });
 
-
+router.get("/api/registeredevents/:user", function(req, res) {
+    var user = req.params.user;
+    var condition = "users.email='"+ user+"' and user_registrations.user_id = users.id and registered_events.id = user_registrations.event_id";
+    var columns = "registered_events.name,registered_events.guid";
+    var tables = "users, user_registrations, registered_events";
+    orm.selectAll(columns,tables,condition,function(data) {
+        console.log(data);
+        res.json(data);
+    
+    });
+    
+});
 module.exports = router;

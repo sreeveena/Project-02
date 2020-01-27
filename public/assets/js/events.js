@@ -160,3 +160,45 @@ return monthNames[num];
 function register(asset){
     window.location.href += "register?asset="+asset;
 }
+
+function fetchRegisteredEvents(user){
+    $.ajax({
+        url: "/api/registeredevents/"+user,
+        method: "GET",
+    }).then(function (response){
+        console.log(response);
+        fillRegisteredEventsTable(response);
+    });
+}
+
+function fillRegisteredEventsTable(databaseResults) {
+  for(var j = 0; j < databaseResults.length; j++) {
+    $.ajax("/api/asset/"+databaseResults[j].guid, {
+        type: "GET"
+        }).then(   
+        function(res, err) {
+            // console.log("Got Asset Data");
+            // console.log(res);
+            registeredEventsTable(res);
+            
+        }
+    ); 
+  }
+}
+
+
+// --------------------------------------------------Display user registered events --------------------------------
+function registeredEventsTable(data){
+    // $("#registeredEvents").remove();
+    var home = $("#registeredEvents");  
+    var j = 0;      
+        var card = `
+        <h3>${data.results[j].assetName} </h3>
+        <h4> ${formatedDate(data.results[j].activityStartDate)}</h4>
+        <div>${data.results[j].place.placeName} , 
+            ${data.results[j].place.cityName} , ${data.results[j].place.stateProvinceCode}</div>
+        `;
+        var card1 = $(card);
+        // accordion.append(card1);
+    home.append(card1);
+}

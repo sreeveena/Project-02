@@ -116,6 +116,7 @@ function checkSession(){
               $("#app-content").html("Welcome " + res.id + "!");
               $("#signOut").show();
               $(".g-signin2").hide();
+              fetchRegisteredEvents(res.id);
           }
         }
       );
