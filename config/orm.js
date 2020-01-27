@@ -3,34 +3,32 @@ var connection = require("../config/connection.js");
 
 // Object for all our SQL statement functions.
 var orm = {
-    selectOne: function(tableInput, condition, cb) {
-        var queryString = "SELECT * FROM " + tableInput + " where "+condition+";";
-        // console.log(queryString);
-        connection.query(queryString, function(err, result) {
-        if (err) {
-            throw err;
-        }
-        // console.log("orm");
-        // console.log(result);
-        cb(result);
-        });
-    },
-    selectAll: function(columns, tableInput, condition, cb) {
-      var queryString = "SELECT "+columns +" FROM " + tableInput + " where "+condition+";";
-      console.log(queryString);
-      connection.query(queryString, function(err, result) {
+  selectOne: function (tableInput, condition, cb) {
+    var queryString = "SELECT * FROM " + tableInput + " where " + condition + ";";
+
+    connection.query(queryString, function (err, result) {
       if (err) {
-          throw err;
+        throw err;
       }
-      // console.log("orm");
-      // console.log(result);
+
       cb(result);
-      });
+    });
   },
-  insertOne: function(table, cols, vals, cb) {
-    var queryString = "INSERT INTO " + table + " ("+ cols.toString()+ ") "+ "VALUES (" + vals + ") ";
-    // console.log(queryString);
-    connection.query(queryString, vals, function(err, result) {
+  selectAll: function (columns, tableInput, condition, cb) {
+    var queryString = "SELECT " + columns + " FROM " + tableInput + " where " + condition + ";";
+
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+  },
+  insertOne: function (table, cols, vals, cb) {
+    var queryString = "INSERT INTO " + table + " (" + cols.toString() + ") " + "VALUES (" + vals + ") ";
+
+    connection.query(queryString, vals, function (err, result) {
       if (err) {
         throw err;
       }

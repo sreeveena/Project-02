@@ -39,16 +39,16 @@ form.addEventListener('submit', function (event) {
     if (result.error) {
       // Inform the customer that there was an error.
 
-      console.log("entered here!")
+      // console.log("entered here!")
 
       var errorElement = document.getElementById('card-errors');
       errorElement.textContent = result.error.message;
     }
     else {
       // Send the token to your server.
-      console.log("entered success here")
+      // console.log("entered success here")
       stripeTokenHandler(result.token);
-      console.log(result.token);
+      // console.log(result.token);
 
       var regDate = eventStartDate.substr(0,10);
       $.ajax("/api/registerevent", {
@@ -56,7 +56,7 @@ form.addEventListener('submit', function (event) {
         data: {assetName: assetName, assetGuid: assetGuid, regDate: regDate, userId: userId}
         }).then(
         function (res, err) {
-            console.log(res);
+            // console.log(res);
         }
       );
     }

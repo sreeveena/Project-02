@@ -34,5 +34,4 @@ CREATE TABLE user_registrations (
 );
 
 
-insert into registered_events values('73f583d0-05cf-4031-af74-78738c755976','');
-insert into user_registrations values
+

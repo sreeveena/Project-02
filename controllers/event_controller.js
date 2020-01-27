@@ -11,11 +11,9 @@ router.post("/api/events", function(req, res) {
     var queryURL = "http://api.amp.active.com/v2/search?category=event&radius=20&sort=distance&api_key=9eqk4qg7mf27c4qwe5vxd79r&start_date="+
     startDate+"..&"+query;
 
-    console.log(queryURL);
     request(queryURL,{json: true}, function(err,result,body){
         if(err)
         return console.log(err);
-        // console.log(body);
         res.json (body);
     });   
 
@@ -27,11 +25,10 @@ router.get("/api/asset/:assetguid", function(req, res) {
     var queryURL = "http://api.amp.active.com/v2/search?api_key=9eqk4qg7mf27c4qwe5vxd79r"+
    "&"+query;
 
-    console.log(queryURL);
     request(queryURL,{json: true}, function(err,result,body){
         if(err)
         return console.log(err);
-        // console.log(body);
+        
         res.json (body);
     });   
 });
@@ -42,7 +39,7 @@ router.get("/api/registeredevents/:user", function(req, res) {
     var columns = "registered_events.name,registered_events.guid";
     var tables = "users, user_registrations, registered_events";
     orm.selectAll(columns,tables,condition,function(data) {
-        console.log(data);
+       
         res.json(data);
     
     });
@@ -54,7 +51,7 @@ router.get("/api/eventsforadmin", function(req, res) {
     var columns = "registered_events.name,users.email";
     var tables = "users, user_registrations, registered_events";
     orm.selectAll(columns,tables,condition,function(data) {
-        console.log(data);
+        
         res.json(data);
     
     });
@@ -72,7 +69,6 @@ router.post("/api/registerevent", function(req, res) {
             var values = ["'"+req.body.assetGuid+"'", "'" + req.body.assetName + "'"];
             orm.insertOne(table,columns,values,function(data3) {
 
-                console.log(data3);
                 fetchUserId(data3.insertId,req,res);
         
             });

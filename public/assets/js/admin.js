@@ -3,7 +3,7 @@ $(function () {
         url: "/api/eventsforadmin",
         method: "GET",
     }).then(function (response) {
-        console.log(response);
+       
         fillAdminTable(response);
     });
 });

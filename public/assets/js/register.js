@@ -9,13 +9,12 @@ $(function () {
 });
     
 function fetchAssetData(assetGuid) {
-    // console.log("fetchAssetData invoked");
+   
     $.ajax("/api/asset/" + assetGuid, {
         type: "GET"
     }).then(
         function (res, err) {
-            // console.log("Got Asset Data");
-            // console.log(res);
+           
             createEventTable(res);
 
         }

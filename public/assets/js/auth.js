@@ -34,8 +34,6 @@ $(function() {
       var email = document.getElementById("email").value;
       var password = document.getElementById("psw").value;
 
-      console.log("user entered email:" + document.getElementById("email").value);
-      console.log("user entered password:" +document.getElementById("psw").value);
       registerUser(email,password, "events");
       $('#reg').find('input').val('');
     });
@@ -61,15 +59,13 @@ function registerUser(email, password, provider){
         password: password,
         provider: provider
     };
-// console.log("line 58: register user");
     // Send the PUT request.
     $.ajax("/api/register", {
         type: "POST",
         data: user
         }).then(   
         function(res, err) {
-            console.log("Registered User");
-            console.log(res);
+            
             if(res.id != ""){
                 $("#registerModal").modal('hide');
                 if(provider != "events") 
@@ -93,7 +89,6 @@ function authUser(email, password, provider){
         data: password
         }).then(
         function(res, err) {
-            console.log(res);
             if(res.result == "success"){
                 $("#loginModal").modal('hide');
                 $(elem).html("");
@@ -117,8 +112,6 @@ function checkSession(){
         type: "GET"
       }).then(
         function(res) {
-          console.log("session id " + res.id);
-          console.log(res);
           sessionId = res.id;
           if(res.id) {
               $("#register-form").hide();
@@ -157,7 +150,7 @@ function eventSignOut(){
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-        console.log('User signed out.');
+
     });
 }
 
@@ -173,7 +166,7 @@ function onSignIn(googleUser) {
 
   // The ID token you need to pass to your backend:
   var id_token = googleUser.getAuthResponse().id_token;
-//   console.log("ID Token: " + id_token);
+
 //registerUser function call with google email parameters.
     registerUser(profile.getEmail(),"", "google");
     // authUser(profile.getEmail(),"", "google");
@@ -182,7 +175,7 @@ function onSignIn(googleUser) {
 }
 //--------------------- function to validate email--------------------------
 function validateEmail(elem, email, name){
-    console.log("email from auth:" + email);
+    
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(email == "" || !re.test(String(email).toLowerCase())){
         elem.css("border-color", "red");

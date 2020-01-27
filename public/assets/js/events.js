@@ -18,7 +18,7 @@ function processSearch() {
         method: "POST",
         data: { query: query, date: todaysDate() }
     }).then(function (response) {
-        // console.log(response);
+       
         createEventsTable(response);
 
     });
