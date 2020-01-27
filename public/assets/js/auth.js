@@ -137,23 +137,13 @@ function eventSignOut(){
         type: "DELETE"
       }).then(
         function(res) {
-         location.reload(); 
+          
+         sessionId = "";
+         location.assign("/");
+        
         }
-      );
-    sessionId = "";
-    
-        // if (window.location.port) {
-        //   window.location.href = window.location.hostname + ":" + window.location.port;
-        // } else {
-        //   window.location.href = window.location.hostname;
-        // }
-        if (window.location.port) {
-            window.location.href = window.location.hostname + ":" + window.location.port;
-          } else {
-            window.location.href = window.location.hostname;
-          }
-    
-    
+    );
+  
 }
 //-------------------------Google functions----------
 function signOut() {
