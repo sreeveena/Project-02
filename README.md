@@ -102,44 +102,40 @@ Mobile responsive
 
 ## Mobile Responsiveness
 We used three breakpoints: 
-Once the page hits 640px, we decided to hide away the trending carousel. We did this to help guide the user through the flow. Instead of seeing the trending carousel  between the preview card and bucket, they just see preview card -> bucket. We don’t want to distract the user or have them leave the application to look up a trending movie on mobile.
+Once the page hits 640px, we decided to give the carousel the appropriate size along with the list of events in the same way we have on our website. On the register page, instead of the maps and regrtation info cluttering the page, we decided to list the maps below the registration information. 
 
 ![Mobile Responsiveness](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/mobileResponseExample.gif "Mobile Responsiveness")
 
 
 ## API Design, Firebase, Libraries
 
-### The OMDB API
-We used the OMDB API for searching for movies/tv shows from the database
-Upon search we wanted to use the response from API and append them to a HTML DIV
+### The Active API
+We used the ACTIVE API for searching all events from the ACTIVE API
+Upon search we wanted to use the response from API and dynamically append them to a HTML DIV
 
-![The OMDB API](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/json1.png "The OMDB API")
+![The ACITVE API](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/json1.png "The OMDB API")
 
 
-### The MovieDB API
-We use this API to get the latest trending movies & tv shows. This will showcase as a carousel with the trending movies & tv shows. The screenshot represents what would the JSON response would be when we query the API.
+### GEOLOCATION
+We use this to get the default location when the user enters the application. This will showcase the list of events displayed by using the ACTIVE api on the landing page and filter then based on their geo location.
 
-![The MovieDB API](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/json2.png "The MovieDB API")
+![GEOLOCATION](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/json2.png "The MovieDB API")
 
-### Firebase Configuration
-Once user clicks the “add to bucket” button after filling out their media info, the child snapshot info is sent up to Firebase.
+### MYSQL Configuration and Design
+We designed our database based on capturing the user logins and only after that we are capturing information on what events they signed up for along with adding hash key for encryting their passwords in the DB.
 
-![The Firebase Config](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/firebase.png "The Firebase Config")
+![The Database Design](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/firebase.png "The Firebase Config")
 
-### Giphy API (Emojis)
+### Google Maps API
 We searched for multiple options for grabbing a set of emojis to rate or emote about a film. We landed with Giphy APIs and we searched for the IDs we wanted to show case for our V1 of the application. We used that to append to the movie search. Every search we tag, we were able to append the emoticon to the movie we wanted to rate.
 
 ![The Giphy API](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/emojiExample.gif "The Giphy API")
 
-### Shareaholic API
+### STRIPE API
 We used this API to share our website/application over a social media platform. For this we used the shareaholic API which gave us the necessary start for sharing our application.
 
 ![The Shareaholic API](https://github.com/Chris-Hayashi/Project-One/blob/READMEUpdatesToMaster/assets/images/ShareaholicAPI.gif "The Shareaholic API")
 
-### Popper.JS
-This library works like a thought bubble,it allows user to hover over a movie and see a brief description of reviews. The information only comes up when a user hovers over the movie and is not to be visible at other times
-
-![Popper.js Library](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/popperExample.gif "Popper.js Library")
 
 ## Git Flow
 We started with one of our team members creating master and added all of our other team members as collaborators:
