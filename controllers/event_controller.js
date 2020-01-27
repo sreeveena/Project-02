@@ -127,7 +127,6 @@ function isUserRegistered(eventId,req,res) {
     var table = "users";
     var condition = " email='" + req.body.userId + "'";
     orm.selectOne(table,condition,function(data) {
-        console.log(data);
         var id = data[0].id;
         condition = "user_id=" + "'" + id + "' AND event_id=" + "'" + eventId + "'";
         table = "user_registrations";
