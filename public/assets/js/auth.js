@@ -116,7 +116,11 @@ function checkSession(){
               $("#app-content").html("Welcome " + res.id + "!");
               $("#signOut").show();
               $(".g-signin2").hide();
+              if(res.id == "admin@motives.com" && !window.location.href.includes("admin")){
+                  window.location.href = "admin";
+              }
               fetchRegisteredEvents(res.id);
+
           }
         }
       );

@@ -48,4 +48,17 @@ router.get("/api/registeredevents/:user", function(req, res) {
     });
     
 });
+
+router.get("/api/eventsforadmin", function(req, res) {
+    var condition = "user_registrations.user_id = users.id and registered_events.id = user_registrations.event_id order by registered_events.name";
+    var columns = "registered_events.name,users.email";
+    var tables = "users, user_registrations, registered_events";
+    orm.selectAll(columns,tables,condition,function(data) {
+        console.log(data);
+        res.json(data);
+    
+    });
+    
+});
+
 module.exports = router;

@@ -32,6 +32,9 @@ app.get('/',function (req, res) {
 app.get('/register',function (req, res) {
   res.sendFile(path.join(__dirname + '/html/register.html'));
 });
+app.get('/admin',function (req, res) {
+  res.sendFile(path.join(__dirname + '/html/admin.html'));
+});
 
 app.listen(PORT, function() {
   console.log("App now listening at localhost:" + PORT);
