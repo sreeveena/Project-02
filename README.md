@@ -73,24 +73,19 @@ User Story 10: Search on events from the landing page
 User Story 11: Admin login and admin functionality for looking at list of events users are registered for.
 
 
-
-
 ## Task Breakdowns
-1. Design - A sleek looking UI using bootstrap and  the website being fully mobile responsive - Matt & Brandon
-2. Functionality - Using OMDB APIs make a call and display the results in the cards - Chris H
-3. Functionality - Using Movie Database APIs display the trending movies in a carousel - Matt & Chris H
-4. Functionality - Adding emojis using GIPHY API to the cards and bucket sections - Krishna
-5. Functionality - Adding Share feature to the bucket section - Krishna
-6. GIT branching - Krishna
+1. Design - A sleek looking UI using bootstrap and  the website being fully mobile responsive - Dave
+2. Sree - OAuth sign-in, geo-location, Registration page logic, modelling
+3. Krishna - Payments (Stripe API), Maps integration on Registration page, GIT
+
 
 ## UI Design
 The layout was intended to give the user a relaxing, easy on the eyes, UI experience, which is reflected in our chosen color scheme. 
 “Don’t over complicated it”
-The feel should remind you of being in a dark movie theatre, or cozied up on the couch with the lights off enjoying your favorite show with some popcorn. 
+The feel was intended for a simplistic yet easy design where A user can come and know what to do without needing an instruction manual. Carousel building, listing events using 
+![UI Design Progression](https://github.com/sreeveena/Project-02/blob/master/public/assets/img/home.png?raw=true "UI Design Layout 1")
 
-![UI Design Progression](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/codeProgression1.png "UI Design Layout 1")
-
-![Code progression Final](https://github.com/Chris-Hayashi/Project-One/blob/master/assets/images/codeProgression2.png "UI Design Layout 2")
+![Code progression Final](https://github.com/sreeveena/Project-02/blob/master/public/assets/img/user_login.png?raw=true "UI Design Layout 2")
 
 ## How We Implemented Bootstrap
 Jumbotron for header,
