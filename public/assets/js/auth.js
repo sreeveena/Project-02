@@ -19,6 +19,11 @@ $(function() {
         checkPasswordMatch(psw);
     });
     
+    $("#regisButton").on("click", function(event) {
+        console.log("Pay now clickd");
+        $(location).attr('href', '/payment');
+      });
+
     $(".registerbtn").on("click", function(event) {
        
       // Make sure to preventDefault on a submit event.

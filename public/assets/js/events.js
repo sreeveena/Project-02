@@ -1,103 +1,100 @@
 var lat = "";
 var lon = "";
-function processSearch(){
+function processSearch() {
     var searchEvent = $("#searchEvent").val();
     var searchLocation = $("#searchLocation").val();
     var query = "";
-    if(searchEvent != ""){
-     query = "query="+searchEvent+"&";   
+    if (searchEvent != "") {
+        query = "query=" + searchEvent + "&";
     }
-    if(searchLocation != ""){
-        query = query+"near="+searchLocation;   
+    if (searchLocation != "") {
+        query = query + "near=" + searchLocation;
     }
-    if(searchLocation == "" && searchEvent == ""){
-        query = "&lat_lon="+lat +","+lon ;   
+    if (searchLocation == "" && searchEvent == "") {
+        query = "&lat_lon=" + lat + "," + lon;
     }
     $.ajax({
         url: "/api/events",
         method: "POST",
-        data: {query: query, date: todaysDate()}
-    }).then(function (response){
+        data: { query: query, date: todaysDate() }
+    }).then(function (response) {
         // console.log(response);
         createEventsTable(response);
-        
+
     });
 }
 //function to search for events in a particular location
-$(function() {
-    $("#searchLocation").on("keypress", function(e) {
-        if(e.which === 13){
+$(function () {
+    $("#searchLocation").on("keypress", function (e) {
+        if (e.which === 13) {
             processSearch();
         }
         return;
     });
 });
 //function to search for  particular events
-$(function() {
-    $("#searchEvent").on("keypress", function(e) {
-        if(e.which === 13){
+$(function () {
+    $("#searchEvent").on("keypress", function (e) {
+        if (e.which === 13) {
             processSearch();
         }
         return;
     });
 });
-var popper ="";
-$(function() {
+var popper = "";
+$(function () {
     $("#reg").hide();
-    $("#registerButton").on("click", function(e){
+    $("#registerButton").on("click", function (e) {
         var ref = $("#registerButton");
         var popup = $("#reg");
         popup.show();
-        popper = new popper(ref,popup,{placement:'top'});
-    });  
+        popper = new popper(ref, popup, { placement: 'top' });
+    });
 });
 
 function getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-          lat = position.coords.latitude;
-          lon = position.coords.longitude;
-        getEvents(position.coords.latitude, position.coords.longitude);
-        
-      });
+        navigator.geolocation.getCurrentPosition(function (position) {
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+            getEvents(position.coords.latitude, position.coords.longitude);
+
+        });
     } else {
-      loc.innerHTML = "Geolocation is not supported by this browser.";
+        loc.innerHTML = "Geolocation is not supported by this browser.";
     }
-  }
-  function todaysDate(){
-    var today =  new Date();
+}
+function todaysDate() {
+    var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1;
+    var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();
-    if(dd<10) 
-        dd=`0${dd}`;
-    if(mm<10)
-        mm=`0${mm}`;
+    if (dd < 10)
+        dd = `0${dd}`;
+    if (mm < 10)
+        mm = `0${mm}`;
     var startDate = `${yyyy}-${mm}-${dd}`;
     return startDate;
-  }
+}
 function getEvents(lat, lon) {
-    query = "&lat_lon="+lat +","+lon ;
+    query = "&lat_lon=" + lat + "," + lon;
     $.ajax({
         url: "/api/events",
         method: "POST",
-        data: {query: query, date:todaysDate()}
-    }).then(function (response){
-        // console.log(response);
+        data: { query: query, date: todaysDate() }
+    }).then(function (response) {
         createEventsTable(response);
         $.ajax({
             url: "https://geocode.xyz/" + lat + "," + lon + "?json=1",
             method: "GET",
-        }).then(function (response){
-            // console.log(response);
-            // console.log(response.city, response.state);
+        }).then(function (response) {
             $("#searchLocation").val(response.city + "," + response.state);
         });
     });
 }
 getLocation();
 //-------------------------------create event card ------------------------
-function createEventsTable(data){
+function createEventsTable(data) {
     $("#accordion").remove();
     var home = $("#home");
     var accordion = $("<div id='accordion'>");
@@ -105,9 +102,9 @@ function createEventsTable(data){
     var collapsed = "";
     var show = "show";
     var assetGuidText = "";
-    
-    for(var j = 0; j < data.results.length; j++) {
-        if(j!=0){
+
+    for (var j = 0; j < data.results.length; j++) {
+        if (j != 0) {
             expand = "false";
             collapsed = "collapsed";
             show = "";
@@ -139,66 +136,57 @@ function createEventsTable(data){
     home.append(accordion);
 }
 
-
-function formatedDate(date){
-// console.log(date);
-// 2020-03-17T22:15:00
+function formatedDate(date) {
     date = date.substring(0, 10);
-    // console.log(date);
     d = new Date(date);
-    formatedStr = getMonthString(d.getMonth()) + "  "+ d.getDate()+ "  "+d.getFullYear();
+    formatedStr = getMonthString(d.getMonth()) + "  " + d.getDate() + "  " + d.getFullYear();
     return formatedStr;
 }
-function getMonthString(num){
+function getMonthString(num) {
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-  "July", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
-return monthNames[num];
+        "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    return monthNames[num];
 }
 
 //register function will redirect to register.html
-function register(asset){
-    window.location.href += "register?asset="+asset;
+function register(asset) {
+    window.location.assign("register?asset="+asset);
 }
 
-function fetchRegisteredEvents(user){
+function fetchRegisteredEvents(user) {
     $.ajax({
-        url: "/api/registeredevents/"+user,
+        url: "/api/registeredevents/" + user,
         method: "GET",
-    }).then(function (response){
-        console.log(response);
+    }).then(function (response) {
         fillRegisteredEventsTable(response);
     });
 }
 
 function fillRegisteredEventsTable(databaseResults) {
-  for(var j = 0; j < databaseResults.length; j++) {
-    $.ajax("/api/asset/"+databaseResults[j].guid, {
-        type: "GET"
-        }).then(   
-        function(res, err) {
-            // console.log("Got Asset Data");
-            // console.log(res);
-            registeredEventsTable(res);
-            
-        }
-    ); 
-  }
+    for (var j = 0; j < databaseResults.length; j++) {
+        $.ajax("/api/asset/" + databaseResults[j].guid, {
+            type: "GET"
+        }).then(
+            function (res, err) {
+                registeredEventsTable(res);
+            }
+        );
+    }
 }
 
-
 // --------------------------------------------------Display user registered events --------------------------------
-function registeredEventsTable(data){
+function registeredEventsTable(data) {
     // $("#registeredEvents").remove();
-    var home = $("#registeredEvents");  
-    var j = 0;      
-        var card = `
+    var home = $("#registeredEvents");
+    var j = 0;
+    var card = `
         <h3>${data.results[j].assetName} </h3>
         <h4> ${formatedDate(data.results[j].activityStartDate)}</h4>
         <div>${data.results[j].place.placeName} , 
             ${data.results[j].place.cityName} , ${data.results[j].place.stateProvinceCode}</div>
         `;
-        var card1 = $(card);
-        // accordion.append(card1);
+    var card1 = $(card);
+    // accordion.append(card1);
     home.append(card1);
 }
