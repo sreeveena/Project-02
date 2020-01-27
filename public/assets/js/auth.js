@@ -1,4 +1,4 @@
-
+var sessionId = "";
 $(function() {
     $(".app").hide();
     $("#signOut").hide();
@@ -18,6 +18,7 @@ $(function() {
         var pswRepeat = $(this).val();
         checkPasswordMatch(psw);
     });
+    
     $(".registerbtn").on("click", function(event) {
        
       // Make sure to preventDefault on a submit event.
@@ -54,17 +55,19 @@ function registerUser(email, password, provider){
         password: password,
         provider: provider
     };
-
+// console.log("line 58: register user");
     // Send the PUT request.
     $.ajax("/api/register", {
         type: "POST",
         data: user
-        }).then(
-        function(err) {
+        }).then(   
+        function(res, err) {
             console.log("Registered User");
-            console.log(err);
-            if(provider != "events") {
-                authUser(email,"", provider);
+            console.log(res);
+            if(res.id != ""){
+                $("#registerModal").modal('hide');
+                if(provider != "events") 
+                    authUser(email,"", provider);
             }
             
         }
@@ -83,12 +86,25 @@ function authUser(email, password, provider){
         type: "POST",
         data: password
         }).then(
-        function(res) {
+        function(res, err) {
             console.log(res);
-            checkSession();
+            if(res.result == "success"){
+                $("#loginModal").modal('hide');
+                $(elem).html("");
+                checkSession();
+            }else{
+                var elem=$("#invalidLogin");
+                $(elem).html("Please enter a valid email or password.");
+                $(elem).css("color", "red");
+            }
         }
     );
 }
+
+function getSessionId() {
+    return sessionId;
+}
+
 //-----------------------Check for session id ----------
 function checkSession(){
     $.ajax("/api/session", {
@@ -96,13 +112,20 @@ function checkSession(){
       }).then(
         function(res) {
           console.log("session id " + res.id);
-        //   console.log(res);
+          console.log(res);
+          sessionId = res.id;
           if(res.id) {
-              $(".login-form").hide();
+              $("#register-form").hide();
+              $("#signin-form").hide();
               $(".app").show();
               $("#app-content").html("Welcome " + res.id + "!");
               $("#signOut").show();
               $(".g-signin2").hide();
+              if(res.id == "admin@motives.com" && !window.location.href.includes("admin")){
+                  window.location.href = "admin";
+              }
+              fetchRegisteredEvents(res.id);
+
           }
         }
       );
@@ -114,9 +137,13 @@ function eventSignOut(){
         type: "DELETE"
       }).then(
         function(res) {
-         location.reload(); 
+          
+         sessionId = "";
+         location.assign("/");
+        
         }
-      );
+    );
+  
 }
 //-------------------------Google functions----------
 function signOut() {
