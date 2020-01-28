@@ -35,7 +35,7 @@ function payment() {
                     $("#payment-error").html("This event is already registered!");
                     $("#payment-error").css("color","red");
                 } else {
-                    location.assign('/payment?userid=' + sessionId + '&assetguid=' + assetGuid + '&assetname=' + assetName + '&eventstartdate=' + eventStartDate);
+                    location.assign('payment?userid=' + sessionId + '&assetguid=' + assetGuid + '&assetname=' + assetName + '&eventstartdate=' + eventStartDate);
                 }
          });
     } else {
