@@ -149,7 +149,7 @@ We did the initial pull from master, we added the structure for the framework we
 
 ## DEMO Gif Walkthrough
 
-![Final DEMO GIF](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/gitimage4.png "Final DEMO GIF")
+![Final DEMO GIF](https://github.com/sreeveena/Project-02/blob/master/public/assets/img/project-02_Demo.gif "Final DEMO GIF")
 
 ![Final DEMO ADMIN GIF](https://github.com/sreeveena/Project-02/blob/master/public/assets/img/project-02_Admin.gif "Final DEMO for ADMIN GIF")
 
