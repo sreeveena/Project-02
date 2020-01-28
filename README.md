@@ -1,5 +1,7 @@
 # Project-02
 
+Heroku link :- https://powerful-coast-54542.herokuapp.com/
+
 The idea behind creating this application was to provide end users a one stop shop location for everything related to activities based on their geo-location by default and in case they want to participate in activities outside of their geo-location, they have the ability to do so! The only question we ask our users, what's your motive?
 
 Our app's simplistic design and functionality ensures the users don't have to look at multiple pages (for example: creating login, sign in or search based on location...) as to where they should go and take the steps for particiapating in an event. It's all in one place! We ensure the user experience is not lost throughout our app, by creating modals within the landing page for registering or signing in so that they are not taken to a separate window and where they have to comeback to the main landing page to look for their events.
