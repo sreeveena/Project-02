@@ -149,7 +149,7 @@ We did the initial pull from master, we added the structure for the framework we
 
 ## DEMO Gif Walkthrough
 
-![](https://github.com/sreeveena/Project-02/blob/master/public/assets/img/project-02_Demo.gifs)
+![Final DEMO GIF](https://github.com/sreeveena/Project-02/blob/updatesToReadme/public/assets/img/gitimage4.png "Final DEMO GIF")
 
 ## Future RoadMap
 
@@ -168,7 +168,7 @@ This works as an autocorrect and spell checks the search words used by the users
 <!-- make a link to the deployed site and have your name as the link -->
 * [Krishna](https://github.com/krishnaaddala)
 * [Sree](https://github.com/sreeveena/)
-* [Dave](https://github.com/dconlan/)
+* [Dave](https://github.com/dconlan1)
 
 ## Appendix for Code Snippets
 
