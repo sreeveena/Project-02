@@ -153,21 +153,19 @@ We did the initial pull from master, we added the structure for the framework we
 
 ## Future RoadMap
 
-#### Garlic.js
-Allows users to fill out forms and saves the text to the local storage for future usage
-#### TypeAhead.js
-This works as an autocorrect or auto finish where a user can start typing something and a recommended word will pop up and can be selected to use
+#### 
+#### NLP Spell Check --> node
+This works as an autocorrect and spell checks the search words used by the users
 #### Additional Features:
-- Sharing the Bucket to social media platforms
-- More custom emojis for user reviews
-- A custom rating system for the movies and tv shows
+- Sharing
+- Payment cart with updated features
+- A custom styling for the entire webpage with additional features
 
 ## Authors
 <!-- make a link to the deployed site and have your name as the link -->
 * [Krishna](https://github.com/krishnaaddala)
-* [Matt](https://github.com/demonaco)
-* [Brandon](https://github.com/brandon123774)
-* [Chris H](https://github.com/Chris-Hayashi/)
+* [Sree]
+* [Dave]
 
 ## Appendix for Code Snippets
 
