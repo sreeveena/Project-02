@@ -169,211 +169,100 @@ This works as an autocorrect and spell checks the search words used by the users
 
 ## Appendix for Code Snippets
 
- ```<!--User bucket-->
+#### Bootstrap Carousel
 
-  <!-- Code provided by Bootstrap -->
-  <div id="userBucket">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card-deck">
-
-            <!-- First Bucket Movie -->
-            <div class="card">
-              <ul class="list-group list-group-flush">
-                <div class="card-header" id="movieTitle1">
-                </div>
-                <div id="showEmoji1"></div>
-              </ul>
-              <img src="" class="card-img-top" id="moviePoster1" alt="movie 1 image" title="Description"
-                data-content="This is the description of the movie searched." data-trigger="hover" data-toggle="popover"
-                data-placement="right">
-              <div class="card-body">
-                <p class="card-text" id="movieComment1"></p>
-              </div>
-            </div>
-             
-            <div class="card">
-              <ul class="list-group list-group-flush">
-                <div class="card-header" id="movieTitle2">
-                </div>
-                <div id="showEmoji2"></div>
-              </ul>
-              <img src="assets/images/Placeholder1.jpg" class="card-img-top" id="moviePoster2" alt="movie 2 image" title="Description"
-                data-content="This is the description of the movie searched." data-trigger="hover" data-toggle="popover"
-                data-placement="right">
-              <div class="card-body">
-                <p class="card-text" id="movieComment2"></p>
-              </div>
-            </div>
+ ```<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/img/markus-spiske-WUehAgqO5hE-unsplash.jpg" class="d-block h-10 w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Cycling</h5>
+          <p>Sign Up For Cycling Races</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/img/mauro-paillex-lRQouvQf1-w-unsplash.jpg" class="d-block h-10 w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Running</h5>
+          <p>Sign Up For Running Events</p>
+        </div>
   ```
-
-   ```<!-- BEGIN SHAREAHOLIC CODE -->
- <link rel="preload" href="https://cdn.shareaholic.net/assets/pub/shareaholic.js" as="script" />
- <meta name="shareaholic:site_id" content="71d1fee0aaacb0afde14b426c0ef89b1" />
- <script data-cfasync="false" async src="https://cdn.shareaholic.net/assets/pub/shareaholic.js"></script>
- <!-- END SHAREAHOLIC CODE -->
-
-<div class="shareaholic-canvas" data-app="share_buttons" data-app-id="28748923"></div>
+#### Events Cards 
+   ```<div class="card">
+          <div class="card-header" id="heading${j}">
+            <h5 class="mb-0">
+              <button class="btn btn-link ${collapsed}" data-toggle="collapse" data-target="#collapse${j}" aria-expanded="${expand}" aria-controls="collapse${j}">
+              ${data.results[j].assetName}
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapse${j}" class="collapse ${show}" aria-labelledby="heading${j}" data-parent="#accordion">
+            <div class="card-body">
+                <div> ${formatedDate(data.results[j].activityStartDate)}</div>
+                <div>${data.results[j].place.placeName} , 
+                ${data.results[j].place.cityName} , ${data.results[j].place.stateProvinceCode}</div>
+              <button onclick="register('${data.results[j].assetGuid}')">Register</button>
+            </div>
+          </div>
+          
+        </div>
   ```
   
+#### Code for searching events using active api call
 
-```//counter for child_added function
-var counter = 0;
+```router.post("/api/events", function(req, res) {
+          var startDate = req.body.date;
+          var lon = req.body.lon;
+          var lat = req.body.lat;
+          var query = req.body.query;
+          var queryURL = "http://api.amp.active.com/v2/search?category=event&radius=20&sort=distance&api_key=9eqk4qg7mf27c4qwe5vxd79r&start_date="+
+          startDate+"..&"+query;
 
-//child_added event for firebase (runs as soon as page is loaded)
-database.ref().on("child_added", function (childSnapshot) {
-
-  //increment the counter
-  counter++;
-  
-  //append the movie title
-  $("#movieTitle" + counter).text(childSnapshot.val().title)
-
-  //append the movie image to each corresponding #moviePoster
-  $("#moviePoster" + counter).attr("src", childSnapshot.val().posterUrl)
-    .attr("data-content", childSnapshot.val().description);
-
-  //append the user comment to each 
-  $("#movieComment" + counter).text(childSnapshot.val().userComment);
-
-  //append the emoji
-  $("#showEmoji" + counter).html(childSnapshot.val().emoji);
-
-  //reset counter if equal to 4
-  if (counter == 4)
-  counter = 0;
-});
+          console.log(queryURL);
+          request(queryURL,{json: true}, function(err,result,body){
+              if(err)
+              return console.log(err);
+              // console.log(body);
+              res.json (body);
+          });   
+      });
   ```
+#### Code for authenticating a user(from browser)
 
-  ```//MovieDatabase AJAX CALL
-$.ajax({
-  url: mdQueryURL + mdApiKey,
-  method: "GET"
-}).then(function (outerResponse) {
-  console.log("ajax");
-  console.log(outerResponse);
+  ```function authUser(email, password, provider){
+    var password = {
+        password: password,
+        provider: provider
+    };
 
-  //append 4 movie images to the trending movies carousel
-  for (var i = 0; i < 4; i++) {
-    console.log("for loop runs: " + i);
-
-
-    //retrieve the movie year for each trending movie
-    var movieYear = outerResponse.results[i + 1].release_date;
-    movieYear = movieYear.split("-");
-    movieYear = "&y=" + movieYear[0];
-
-    //inner AJAX call to OMDB API
-    omdbCall(i, movieYear);
-  }
+    // Send the POST request.
+    $.ajax("/api/auth/"+email, {
+        type: "POST",
+        data: password
+        }).then(
+        function(res, err) {
+            if(res.result == "success"){
+                $("#loginModal").modal('hide');
+                $(elem).html("");
+                checkSession();
+            }else{
+                var elem=$("#invalidLogin");
+                $(elem).html("Please enter a valid email or password.");
+                $(elem).css("color", "red");
+            }
+        }
+    );
+      }
   ```
+#### Code for saving encrypted one-way hash(SHA256) encrypted password
 
-  ``` //onClick event for the search button
-$("#button-addon2").on("click", function (event) {
-
-  //prevent the event from refreshing the page
-  event.preventDefault();
-
-  //store the movie title in a variable
-  var movieTitle = $(".form-control").val().trim();
-
-  //OMDB AJAX CALL
-  $.ajax({
-    url: omdbQueryURL + movieTitle + omdbApiKey,
-    method: "GET"
-  }).then(function (response) {
-
-    //retrieve the title of the movie
-    $("#movieTitle").text(response.Title);
-
-    //retrieve the image of the movie
-    $("#movieImage").attr("src", response.Poster);
-
-    $("#movieImage").attr("data-content", response.Plot);
-
-  });
-});
-  ```
-  ```//create an object for each movie
-  var addMovie = {
-    title: $("#movieTitle").text(),
-    posterUrl: $("#movieImage").attr("src"),
-    userComment: $("#inputField").val(),
-    emoji: $("#showEmoji").html(),
-    description: $("#movieImage").attr("data-content")
-  }
-  ```
-  ```// here starts EMOJI API logic
-emojiID = ["cNEkiz27tOidqUBuoR", "2fIbmaiOnI3VlQFZEq", "yN4RUYrRRrKVRoGqQm", "TgGWZwWlsODxFPA21A", "3OsFzorSZSUZcvo6UC"];
-function emojiDisplay() {
-  $("#emojiBtn").empty();
-  for (i = 0; i < emojiID.length; i++) {
-    emojiqueryURL = "https://api.giphy.com/v1/gifs/"+emojiID[i]+"?api_key=tuHOptJN3WWLtwMil1BWJF8fU18JA1f5";
-    $.ajax({
-      url: emojiqueryURL,
-      method: "GET"
-    }).then(function (response) {
-     // adding div class with a card-group using bootstrap 
-      var emojiDiv = $("<span>");
-      $("#emojiBtn").append(emojiDiv);          
-          var emojiImage = $("<img onclick=imgClick('" + response.data.images.downsized_medium.url + "')>")
-              .attr("class", 'emoji_images')
-              .attr("src", response.data.images.downsized_medium.url)
-              
-          $(emojiDiv).append(emojiImage);
-    });
-  } 
-}
-function imgClick(idx) {
-  $("#showEmoji").html("");
-  $("#showEmoji").append('<img src = "' + idx + '" height = 50px width = 50px>');
-}
-  ```
-
-Git commands:
-
-```
-    git checkout master
-    git checkout -b branchname
-    
-    *make changes to the files in your branch*
-    
-    git status
-    git add .
-    git commit -m "message"
-    git push origin master
-    
-    *Create Pull Request*
-    *Merge your code to "master"*
-    ```
-
-## Techonologies used: 
-1. HTML
-2. CSS
-3. NodeJS
-4. MYSQL
-5. Javascript
-6. AJAX
-7. APIs
-
-Libraries used:
-1. express
-2. crypto-js
-3. express-session
-4. popper 
-5. Google sign-in integration library
-6. mysql
-7. googleMaps API
-8. Stripe API
-
-## Implementation Details:
-The user registration/login:  A user database was created to store user name, password and provider information (whether the user had registered with the website directly or is visiting using Google account). The password of the user is being stored with one-way hash encryption (SHA256). A session is created for a successful user login to track user activities. A registration UI element and login UI element is created for the user to register and login to the website. For users wanting to use Google account for login and registration - a google sign-in button has been introduced using Google provided html and javascript code. This code requires a Google api key (which we temporarily created for this project).
-
-code for saving encrypted one-way hash(SHA256) encrypted password
-''' javascript
-
-    if(data[0].provider){
+  ``` if(data[0].provider){
           if(data[0].provider && data[0].provider == "events"){
               var encryptedPassword = Crypto.SHA256(req.body.password).toString();
               if( data[0].password == encryptedPassword){
@@ -393,24 +282,114 @@ code for saving encrypted one-way hash(SHA256) encrypted password
     }
 
     });
-    '''
-code for searching events using active api call
-'''javascript
+  ```
+#### Code for obtainning user's current location
 
-        router.post("/api/events", function(req, res) {
-          var startDate = req.body.date;
-          var lon = req.body.lon;
-          var lat = req.body.lat;
-          var query = req.body.query;
-          var queryURL = "http://api.amp.active.com/v2/search?category=event&radius=20&sort=distance&api_key=9eqk4qg7mf27c4qwe5vxd79r&start_date="+
-          startDate+"..&"+query;
+  ```function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+            getEvents(position.coords.latitude, position.coords.longitude);
 
-          console.log(queryURL);
-          request(queryURL,{json: true}, function(err,result,body){
-              if(err)
-              return console.log(err);
-              // console.log(body);
-              res.json (body);
-          });   
-      });
-    '''
+        });
+    } else {
+        loc.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    }
+  ```
+
+#### Code for obtaining user and event data from mysql database
+
+  ```selectAll: function (columns, tableInput, condition, cb) {
+    var queryString = "SELECT " + columns + " FROM " + tableInput + " where " + condition + ";";
+
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+    }
+  ```
+
+#### Code for google maps integration
+
+  ```const lat1 = parseFloat(data.results[0].place.latitude);
+    const lng1 = parseFloat(data.results[0].place.longitude);
+    const zoom = 12;
+
+    const parentElement = document.getElementById('map');
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD-wGV-73Rq0qk5sgzrGXauPnJ-J1kgGcU';
+    script.async = true;
+    script.defer = true;
+    script.onload = function () {
+        var mapLocation = { lat: lat1, lng: lng1 };
+        var map = new google.maps.Map(parentElement, {
+            center: mapLocation,
+            zoom: zoom
+        });
+
+        var marker = new google.maps.Marker({ position: mapLocation, map: map });
+    };
+  ```
+
+#### Code for payments integration
+
+  ```
+  // Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Create a token or display an error when the form is submitted.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function (result) {
+    if (result.error) {
+      // Inform the customer that there was an error.
+
+      console.log("entered here!")
+
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    }
+    else {
+      // Send the token to your server.
+      console.log("entered success here")
+      stripeTokenHandler(result.token);
+      console.log(result.token);
+
+      var regDate = eventStartDate.substr(0,10);
+      $.ajax("/api/registerevent", {
+        type: "POST",
+        data: {assetName: assetName, assetGuid: assetGuid, regDate: regDate, userId: userId}
+        }).then(
+        function (res, err) {
+            console.log(res);
+        }
+      );
+    }
+  });
+});
+  ```
+
+Git commands:
+
+```
+    git checkout master
+    git checkout -b branchname
+    
+    *make changes to the files in your branch*
+    
+    git status
+    git add .
+    git commit -m "message"
+    git push origin master
+    
+    *Create Pull Request*
+    *Merge your code to "master"*
+    ```
+
