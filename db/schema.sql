@@ -16,8 +16,7 @@ CREATE TABLE cards (
   cardnum varchar(20),
   expiry varchar(10),
   cvv int,
-  zipcode varchar(10),
-  PRIMARY KEY (id)
+  zipcode varchar(10)
 );
 
 CREATE TABLE registered_events (
@@ -31,8 +30,8 @@ CREATE TABLE user_registrations (
   user_id int NOT NULL,
   event_id int NOT NULL,
   reg_date DATE NOT NULL,
-  PRIMARY KEY(user_id),
-  FOREIGN KEY (event_id)
+  PRIMARY KEY(user_id, event_id)
+  
 );
 
 

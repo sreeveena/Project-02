@@ -75,6 +75,6 @@ function stripeTokenHandler(token) {
   console.log(token);
   $('#exampleModal').modal('show');
   $("#closeModal").click(function () {
-    window.location.href = "/"
+    location.assign("/");
   });
 }
