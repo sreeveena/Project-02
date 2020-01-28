@@ -149,12 +149,15 @@ We did the initial pull from master, we added the structure for the framework we
 
 ## DEMO Gif Walkthrough
 
-![](https://github.com/Chris-Hayashi/Project-One-Repo2/blob/master/assets/images/FinalProject1Giphy.gif)
+![](https://github.com/sreeveena/Project-02/blob/master/public/assets/img/project-02_Demo.gifs)
 
 ## Future RoadMap
 
-#### 
+#### REACT based UI
 #### NLP Spell Check --> node
+#### Multiple models using SQL
+#### Multiple routes to handle more features
+
 This works as an autocorrect and spell checks the search words used by the users
 #### Additional Features:
 - Sharing
@@ -164,8 +167,8 @@ This works as an autocorrect and spell checks the search words used by the users
 ## Authors
 <!-- make a link to the deployed site and have your name as the link -->
 * [Krishna](https://github.com/krishnaaddala)
-* [Sree]
-* [Dave]
+* [Sree](https://github.com/sreeveena/)
+* [Dave](https://github.com/dconlan/)
 
 ## Appendix for Code Snippets
 
@@ -376,7 +379,7 @@ form.addEventListener('submit', function (event) {
 });
   ```
 
-Git commands:
+## Git commands:
 
 ```
     git checkout master
