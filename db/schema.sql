@@ -30,7 +30,8 @@ CREATE TABLE user_registrations (
   user_id int NOT NULL,
   event_id int NOT NULL,
   reg_date DATE NOT NULL,
-  PRIMARY KEY(user_id, event_id )
+  PRIMARY KEY(user_id, event_id)
+  
 );
 
 
